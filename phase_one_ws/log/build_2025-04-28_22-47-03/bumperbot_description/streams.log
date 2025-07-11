@@ -1,0 +1,61 @@
+[0.285s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/home/mido/Music/phase_one_ws/install/bumperbot_controller:/opt/ros/humble /usr/bin/cmake /home/mido/Music/phase_one_ws/src/bumperbot_description -DCMAKE_INSTALL_PREFIX=/home/mido/Music/phase_one_ws/install/bumperbot_description
+[0.338s] -- The C compiler identification is GNU 11.4.0
+[0.393s] -- The CXX compiler identification is GNU 11.4.0
+[0.401s] -- Detecting C compiler ABI info
+[0.473s] -- Detecting C compiler ABI info - done
+[0.480s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.480s] -- Detecting C compile features
+[0.480s] -- Detecting C compile features - done
+[0.483s] -- Detecting CXX compiler ABI info
+[0.566s] -- Detecting CXX compiler ABI info - done
+[0.574s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.574s] -- Detecting CXX compile features
+[0.574s] -- Detecting CXX compile features - done
+[0.577s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.727s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.818s] -- Found urdf: 2.6.1 (/opt/ros/humble/share/urdf/cmake)
+[0.875s] -- Found ament_lint_auto: 0.12.12 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.957s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.959s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.960s] -- Added test 'lint_cmake' to check CMake code style
+[0.960s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.962s] -- Added test 'xmllint' to check XML markup files
+[0.963s] -- Configuring done
+[0.967s] -- Generating done
+[0.969s] -- Build files have been written to: /home/mido/Music/phase_one_ws/build/bumperbot_description
+[0.980s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/home/mido/Music/phase_one_ws/install/bumperbot_controller:/opt/ros/humble /usr/bin/cmake /home/mido/Music/phase_one_ws/src/bumperbot_description -DCMAKE_INSTALL_PREFIX=/home/mido/Music/phase_one_ws/install/bumperbot_description
+[0.981s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/home/mido/Music/phase_one_ws/install/bumperbot_controller:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_description -- -j16 -l16
+[1.021s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/home/mido/Music/phase_one_ws/install/bumperbot_controller:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_description -- -j16 -l16
+[1.032s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/home/mido/Music/phase_one_ws/install/bumperbot_controller:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_description
+[1.040s] -- Install configuration: ""
+[1.041s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/launch
+[1.041s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/launch/gazebo.launch.py
+[1.041s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/meshes
+[1.041s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/meshes/caster_rear_link.STL
+[1.041s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/meshes/wheel_right_link.STL
+[1.042s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/meshes/imu_link.STL
+[1.043s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/meshes/wheel_left_link.STL
+[1.044s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/meshes/base_link.STL
+[1.059s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/meshes/caster_front_link.STL
+[1.059s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/urdf
+[1.059s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/urdf/bumperbot_gazebo.xacro
+[1.059s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/urdf/bumperbot_ros2_control.xacro
+[1.059s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/urdf/bumperbot.urdf.xacro
+[1.060s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/rviz
+[1.060s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/rviz/display.rviz
+[1.060s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/ament_index/resource_index/package_run_dependencies/bumperbot_description
+[1.060s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/ament_index/resource_index/parent_prefix_path/bumperbot_description
+[1.060s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/environment/ament_prefix_path.sh
+[1.060s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/environment/ament_prefix_path.dsv
+[1.060s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/environment/path.sh
+[1.061s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/environment/path.dsv
+[1.061s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/local_setup.bash
+[1.061s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/local_setup.sh
+[1.061s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/local_setup.zsh
+[1.061s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/local_setup.dsv
+[1.061s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.dsv
+[1.061s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/ament_index/resource_index/packages/bumperbot_description
+[1.062s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/cmake/bumperbot_descriptionConfig.cmake
+[1.062s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/cmake/bumperbot_descriptionConfig-version.cmake
+[1.062s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.xml
+[1.064s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/home/mido/Music/phase_one_ws/install/bumperbot_controller:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_description

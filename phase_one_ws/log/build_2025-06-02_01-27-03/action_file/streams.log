@@ -1,0 +1,23 @@
+[0.028s] Invoking command in '/home/mido/Music/phase_one_ws/build/action_file': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/action_file -- -j16 -l16
+[0.091s] [  3%] Built target action_file__cpp
+[0.092s] [ 12%] Built target action_file__rosidl_generator_c
+[0.104s] [ 12%] Built target ament_cmake_python_copy_action_file
+[0.120s] [ 32%] Built target action_file__rosidl_typesupport_cpp
+[0.120s] [ 32%] Built target action_file__rosidl_typesupport_c
+[0.120s] [ 41%] Built target action_file__rosidl_typesupport_fastrtps_cpp
+[0.121s] [ 51%] Built target action_file__rosidl_typesupport_fastrtps_c
+[0.121s] [ 61%] Built target action_file__rosidl_typesupport_introspection_cpp
+[0.121s] [ 70%] Built target action_file__rosidl_typesupport_introspection_c
+[0.152s] [ 70%] Built target action_file
+[0.183s] [ 74%] Built target action_file__py
+[0.214s] [ 80%] Built target action_file__rosidl_generator_py
+[0.240s] [100%] Built target action_file__rosidl_typesupport_introspection_c__pyext
+[0.240s] [100%] Built target action_file__rosidl_typesupport_c__pyext
+[0.240s] [100%] Built target action_file__rosidl_typesupport_fastrtps_c__pyext
+[0.410s] running egg_info
+[0.411s] writing action_file.egg-info/PKG-INFO
+[0.411s] writing dependency_links to action_file.egg-info/dependency_links.txt
+[0.411s] writing top-level names to action_file.egg-info/top_level.txt
+[0.416s] reading manifest file 'action_file.egg-info/SOURCES.txt'
+[0.416s] writing manifest file 'action_file.egg-info/SOURCES.txt'
+[0.468s] [100%] Built target ament_cmake_python_build_action_file_egg

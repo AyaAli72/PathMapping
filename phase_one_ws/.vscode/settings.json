@@ -1,0 +1,18 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages",
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/demo_gazebo_ros_car_minimal/lib/python3.10/site-packages",
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages",
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/action_file/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages",
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/demo_gazebo_ros_car_minimal/lib/python3.10/site-packages",
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages",
+        "/home/mido/ROS2/workspaces/phase_one_ws/install/action_file/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

@@ -1,0 +1,395 @@
+[0.091s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.091s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=16, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7a72f1a88250>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7a72f1a53ca0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7a72f1a53ca0>>, mixin_verb=('build',))
+[0.256s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.256s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.257s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.257s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.257s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.257s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.257s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/mido/Music/phase_one_ws'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.257s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.275s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extensions ['ignore', 'ignore_ament_install']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extension 'ignore'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extension 'ignore_ament_install'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extensions ['colcon_pkg']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extension 'colcon_pkg'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extensions ['colcon_meta']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extension 'colcon_meta'
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extensions ['ros']
+[0.276s] Level 1:colcon.colcon_core.package_identification:_identify(src/action_file) by extension 'ros'
+[0.278s] DEBUG:colcon.colcon_core.package_identification:Package 'src/action_file' with type 'ros.ament_cmake' and name 'action_file'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extensions ['ignore', 'ignore_ament_install']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extension 'ignore'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extension 'ignore_ament_install'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extensions ['colcon_pkg']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extension 'colcon_pkg'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extensions ['colcon_meta']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extension 'colcon_meta'
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extensions ['ros']
+[0.279s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_controller) by extension 'ros'
+[0.280s] DEBUG:colcon.colcon_core.package_identification:Package 'src/bumperbot_controller' with type 'ros.ament_cmake' and name 'bumperbot_controller'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extensions ['ignore', 'ignore_ament_install']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extension 'ignore'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extension 'ignore_ament_install'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extensions ['colcon_pkg']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extension 'colcon_pkg'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extensions ['colcon_meta']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extension 'colcon_meta'
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extensions ['ros']
+[0.280s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_description) by extension 'ros'
+[0.282s] DEBUG:colcon.colcon_core.package_identification:Package 'src/bumperbot_description' with type 'ros.ament_cmake' and name 'bumperbot_description'
+[0.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extensions ['ignore', 'ignore_ament_install']
+[0.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extension 'ignore'
+[0.282s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extension 'ignore_ament_install'
+[0.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extensions ['colcon_pkg']
+[0.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extension 'colcon_pkg'
+[0.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extensions ['colcon_meta']
+[0.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extension 'colcon_meta'
+[0.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extensions ['ros']
+[0.283s] Level 1:colcon.colcon_core.package_identification:_identify(src/bumperbot_localization) by extension 'ros'
+[0.284s] DEBUG:colcon.colcon_core.package_identification:Package 'src/bumperbot_localization' with type 'ros.ament_cmake' and name 'bumperbot_localization'
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extensions ['ignore', 'ignore_ament_install']
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extension 'ignore'
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extension 'ignore_ament_install'
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extensions ['colcon_pkg']
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extension 'colcon_pkg'
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extensions ['colcon_meta']
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extension 'colcon_meta'
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extensions ['ros']
+[0.284s] Level 1:colcon.colcon_core.package_identification:_identify(src/motion_pkg) by extension 'ros'
+[0.285s] DEBUG:colcon.colcon_core.package_identification:Package 'src/motion_pkg' with type 'ros.ament_python' and name 'motion_pkg'
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.285s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.302s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.302s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.304s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 5 installed packages in /home/mido/Music/phase_one_ws/install
+[0.305s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 389 installed packages in /opt/ros/humble
+[0.307s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'cmake_args' from command line to 'None'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'cmake_target' from command line to 'None'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'cmake_clean_cache' from command line to 'False'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'cmake_clean_first' from command line to 'False'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'cmake_force_configure' from command line to 'False'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'ament_cmake_args' from command line to 'None'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'catkin_cmake_args' from command line to 'None'
+[0.355s] Level 5:colcon.colcon_core.verb:set package 'action_file' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.355s] DEBUG:colcon.colcon_core.verb:Building package 'action_file' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mido/Music/phase_one_ws/build/action_file', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mido/Music/phase_one_ws/install/action_file', 'merge_install': False, 'path': '/home/mido/Music/phase_one_ws/src/action_file', 'symlink_install': False, 'test_result_base': None}
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'cmake_args' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'cmake_target' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'cmake_clean_cache' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'cmake_clean_first' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'cmake_force_configure' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'ament_cmake_args' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'catkin_cmake_args' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_controller' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.356s] DEBUG:colcon.colcon_core.verb:Building package 'bumperbot_controller' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mido/Music/phase_one_ws/build/bumperbot_controller', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mido/Music/phase_one_ws/install/bumperbot_controller', 'merge_install': False, 'path': '/home/mido/Music/phase_one_ws/src/bumperbot_controller', 'symlink_install': False, 'test_result_base': None}
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'cmake_args' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'cmake_target' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'cmake_clean_cache' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'cmake_clean_first' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'cmake_force_configure' from command line to 'False'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'ament_cmake_args' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'catkin_cmake_args' from command line to 'None'
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.356s] DEBUG:colcon.colcon_core.verb:Building package 'bumperbot_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mido/Music/phase_one_ws/build/bumperbot_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mido/Music/phase_one_ws/install/bumperbot_description', 'merge_install': False, 'path': '/home/mido/Music/phase_one_ws/src/bumperbot_description', 'symlink_install': False, 'test_result_base': None}
+[0.356s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'cmake_args' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'cmake_target' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'cmake_clean_cache' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'cmake_clean_first' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'cmake_force_configure' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'ament_cmake_args' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'catkin_cmake_args' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'bumperbot_localization' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.357s] DEBUG:colcon.colcon_core.verb:Building package 'bumperbot_localization' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mido/Music/phase_one_ws/build/bumperbot_localization', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mido/Music/phase_one_ws/install/bumperbot_localization', 'merge_install': False, 'path': '/home/mido/Music/phase_one_ws/src/bumperbot_localization', 'symlink_install': False, 'test_result_base': None}
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'cmake_args' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'cmake_target' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'cmake_clean_cache' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'cmake_clean_first' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'cmake_force_configure' from command line to 'False'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'ament_cmake_args' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'catkin_cmake_args' from command line to 'None'
+[0.357s] Level 5:colcon.colcon_core.verb:set package 'motion_pkg' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.357s] DEBUG:colcon.colcon_core.verb:Building package 'motion_pkg' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mido/Music/phase_one_ws/build/motion_pkg', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mido/Music/phase_one_ws/install/motion_pkg', 'merge_install': False, 'path': '/home/mido/Music/phase_one_ws/src/motion_pkg', 'symlink_install': False, 'test_result_base': None}
+[0.357s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.358s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.358s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mido/Music/phase_one_ws/src/action_file' with build type 'ament_cmake'
+[0.358s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mido/Music/phase_one_ws/src/action_file'
+[0.360s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.360s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.360s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.364s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mido/Music/phase_one_ws/src/bumperbot_controller' with build type 'ament_cmake'
+[0.364s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mido/Music/phase_one_ws/src/bumperbot_controller'
+[0.364s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.364s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.367s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mido/Music/phase_one_ws/src/bumperbot_description' with build type 'ament_cmake'
+[0.367s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mido/Music/phase_one_ws/src/bumperbot_description'
+[0.367s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.368s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.370s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mido/Music/phase_one_ws/src/bumperbot_localization' with build type 'ament_cmake'
+[0.371s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mido/Music/phase_one_ws/src/bumperbot_localization'
+[0.371s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.371s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.378s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/action_file': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/action_file -- -j16 -l16
+[0.380s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_controller -- -j16 -l16
+[0.383s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_description -- -j16 -l16
+[0.386s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_localization -- -j16 -l16
+[0.417s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_description -- -j16 -l16
+[0.428s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_description
+[0.438s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bumperbot_description)
+[0.440s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_description
+[0.442s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description' for CMake module files
+[0.443s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description' for CMake config files
+[0.443s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_description', 'cmake_prefix_path')
+[0.444s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/hook/cmake_prefix_path.ps1'
+[0.444s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/hook/cmake_prefix_path.dsv'
+[0.445s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/hook/cmake_prefix_path.sh'
+[0.446s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/bin'
+[0.446s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/lib/pkgconfig/bumperbot_description.pc'
+[0.446s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/lib/python3.10/site-packages'
+[0.446s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/bin'
+[0.447s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.ps1'
+[0.448s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.dsv'
+[0.449s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.sh'
+[0.449s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.bash'
+[0.450s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.zsh'
+[0.451s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/bumperbot_description/share/colcon-core/packages/bumperbot_description)
+[0.452s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bumperbot_description)
+[0.452s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description' for CMake module files
+[0.452s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description' for CMake config files
+[0.453s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_description', 'cmake_prefix_path')
+[0.453s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/hook/cmake_prefix_path.ps1'
+[0.454s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/hook/cmake_prefix_path.dsv'
+[0.455s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/hook/cmake_prefix_path.sh'
+[0.455s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/bin'
+[0.455s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/lib/pkgconfig/bumperbot_description.pc'
+[0.456s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/lib/python3.10/site-packages'
+[0.456s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_description/bin'
+[0.456s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.ps1'
+[0.457s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.dsv'
+[0.457s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.sh'
+[0.457s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.bash'
+[0.458s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_description/share/bumperbot_description/package.zsh'
+[0.458s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/bumperbot_description/share/colcon-core/packages/bumperbot_description)
+[0.728s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_controller -- -j16 -l16
+[0.730s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_controller
+[0.737s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/action_file' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/action_file -- -j16 -l16
+[0.740s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/action_file': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/action_file
+[0.743s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_localization -- -j16 -l16
+[0.744s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_localization
+[0.774s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bumperbot_controller)
+[0.775s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller' for CMake module files
+[0.775s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_controller
+[0.775s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller' for CMake config files
+[0.776s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_controller', 'cmake_prefix_path')
+[0.776s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/cmake_prefix_path.ps1'
+[0.776s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/cmake_prefix_path.dsv'
+[0.777s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/cmake_prefix_path.sh'
+[0.777s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib'
+[0.778s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/bin'
+[0.778s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/pkgconfig/bumperbot_controller.pc'
+[0.778s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages'
+[0.778s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_controller', 'pythonpath')
+[0.778s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/pythonpath.ps1'
+[0.779s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/pythonpath.dsv'
+[0.779s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/pythonpath.sh'
+[0.779s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/bin'
+[0.780s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.ps1'
+[0.780s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.dsv'
+[0.780s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.sh'
+[0.781s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.bash'
+[0.781s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.zsh'
+[0.781s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/colcon-core/packages/bumperbot_controller)
+[0.782s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bumperbot_controller)
+[0.782s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller' for CMake module files
+[0.783s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller' for CMake config files
+[0.784s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_controller', 'cmake_prefix_path')
+[0.784s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/cmake_prefix_path.ps1'
+[0.785s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/cmake_prefix_path.dsv'
+[0.785s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/cmake_prefix_path.sh'
+[0.786s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib'
+[0.786s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/bin'
+[0.786s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/pkgconfig/bumperbot_controller.pc'
+[0.786s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages'
+[0.786s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_controller', 'pythonpath')
+[0.786s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/pythonpath.ps1'
+[0.789s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/pythonpath.dsv'
+[0.790s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/hook/pythonpath.sh'
+[0.794s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_controller/bin'
+[0.794s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.ps1'
+[0.795s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.dsv'
+[0.795s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.sh'
+[0.795s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.bash'
+[0.796s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.zsh'
+[0.796s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/bumperbot_controller/share/colcon-core/packages/bumperbot_controller)
+[0.797s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bumperbot_localization)
+[0.797s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization' for CMake module files
+[0.798s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_localization
+[0.798s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization' for CMake config files
+[0.799s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_localization', 'cmake_prefix_path')
+[0.799s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/hook/cmake_prefix_path.ps1'
+[0.799s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/hook/cmake_prefix_path.dsv'
+[0.800s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/hook/cmake_prefix_path.sh'
+[0.800s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/bin'
+[0.800s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/lib/pkgconfig/bumperbot_localization.pc'
+[0.800s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/lib/python3.10/site-packages'
+[0.801s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/bin'
+[0.801s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.ps1'
+[0.801s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.dsv'
+[0.801s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.sh'
+[0.802s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.bash'
+[0.802s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.zsh'
+[0.802s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/colcon-core/packages/bumperbot_localization)
+[0.803s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(bumperbot_localization)
+[0.803s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization' for CMake module files
+[0.803s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization' for CMake config files
+[0.804s] Level 1:colcon.colcon_core.shell:create_environment_hook('bumperbot_localization', 'cmake_prefix_path')
+[0.804s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/hook/cmake_prefix_path.ps1'
+[0.804s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/hook/cmake_prefix_path.dsv'
+[0.805s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/hook/cmake_prefix_path.sh'
+[0.805s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/bin'
+[0.805s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/lib/pkgconfig/bumperbot_localization.pc'
+[0.805s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/lib/python3.10/site-packages'
+[0.805s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/bumperbot_localization/bin'
+[0.806s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.ps1'
+[0.806s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.dsv'
+[0.806s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.sh'
+[0.807s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.bash'
+[0.807s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.zsh'
+[0.808s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/bumperbot_localization/share/colcon-core/packages/bumperbot_localization)
+[0.808s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(action_file)
+[0.808s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file' for CMake module files
+[0.809s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/build/action_file' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/action_file
+[0.809s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file' for CMake config files
+[0.810s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_file', 'cmake_prefix_path')
+[0.810s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/cmake_prefix_path.ps1'
+[0.810s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/cmake_prefix_path.dsv'
+[0.811s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/cmake_prefix_path.sh'
+[0.811s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/lib'
+[0.811s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_file', 'ld_library_path_lib')
+[0.811s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/ld_library_path_lib.ps1'
+[0.812s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/ld_library_path_lib.dsv'
+[0.812s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/ld_library_path_lib.sh'
+[0.812s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/bin'
+[0.812s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/lib/pkgconfig/action_file.pc'
+[0.813s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/lib/python3.10/site-packages'
+[0.813s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/bin'
+[0.813s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.ps1'
+[0.813s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.dsv'
+[0.814s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.sh'
+[0.814s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.bash'
+[0.814s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.zsh'
+[0.815s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/action_file/share/colcon-core/packages/action_file)
+[0.815s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(action_file)
+[0.815s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file' for CMake module files
+[0.816s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file' for CMake config files
+[0.816s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_file', 'cmake_prefix_path')
+[0.817s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/cmake_prefix_path.ps1'
+[0.817s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/cmake_prefix_path.dsv'
+[0.817s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/cmake_prefix_path.sh'
+[0.818s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/lib'
+[0.818s] Level 1:colcon.colcon_core.shell:create_environment_hook('action_file', 'ld_library_path_lib')
+[0.818s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/ld_library_path_lib.ps1'
+[0.818s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/ld_library_path_lib.dsv'
+[0.819s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/hook/ld_library_path_lib.sh'
+[0.819s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/bin'
+[0.819s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/lib/pkgconfig/action_file.pc'
+[0.819s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/lib/python3.10/site-packages'
+[0.819s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/action_file/bin'
+[0.820s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.ps1'
+[0.820s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.dsv'
+[0.820s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.sh'
+[0.821s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.bash'
+[0.821s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/action_file/share/action_file/package.zsh'
+[0.821s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/action_file/share/colcon-core/packages/action_file)
+[0.822s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/mido/Music/phase_one_ws/src/motion_pkg' with build type 'ament_python'
+[0.822s] Level 1:colcon.colcon_core.shell:create_environment_hook('motion_pkg', 'ament_prefix_path')
+[0.822s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/hook/ament_prefix_path.ps1'
+[0.823s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/hook/ament_prefix_path.dsv'
+[0.823s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/hook/ament_prefix_path.sh'
+[0.824s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.824s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.077s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/mido/Music/phase_one_ws/src/motion_pkg'
+[1.077s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.077s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.399s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mido/Music/phase_one_ws/src/motion_pkg': CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:/home/mido/Music/phase_one_ws/install/bumperbot_localization:/home/mido/Music/phase_one_ws/install/bumperbot_description:/home/mido/Music/phase_one_ws/install/bumperbot_controller PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data
+[1.676s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/motion_pkg' for CMake module files
+[1.676s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mido/Music/phase_one_ws/src/motion_pkg' returned '0': CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:/home/mido/Music/phase_one_ws/install/bumperbot_localization:/home/mido/Music/phase_one_ws/install/bumperbot_description:/home/mido/Music/phase_one_ws/install/bumperbot_controller PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/motion_pkg' for CMake config files
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/motion_pkg/lib'
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/motion_pkg/bin'
+[1.677s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/motion_pkg/lib/pkgconfig/motion_pkg.pc'
+[1.678s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages'
+[1.678s] Level 1:colcon.colcon_core.shell:create_environment_hook('motion_pkg', 'pythonpath')
+[1.678s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/hook/pythonpath.ps1'
+[1.678s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/hook/pythonpath.dsv'
+[1.679s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/hook/pythonpath.sh'
+[1.679s] Level 1:colcon.colcon_core.environment:checking '/home/mido/Music/phase_one_ws/install/motion_pkg/bin'
+[1.679s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(motion_pkg)
+[1.680s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/package.ps1'
+[1.680s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/package.dsv'
+[1.680s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/package.sh'
+[1.681s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/package.bash'
+[1.681s] INFO:colcon.colcon_core.shell:Creating package script '/home/mido/Music/phase_one_ws/install/motion_pkg/share/motion_pkg/package.zsh'
+[1.681s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mido/Music/phase_one_ws/install/motion_pkg/share/colcon-core/packages/motion_pkg)
+[1.682s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[1.682s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[1.682s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[1.682s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[1.687s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[1.687s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[1.687s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[1.694s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[1.695s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mido/Music/phase_one_ws/install/local_setup.ps1'
+[1.695s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/mido/Music/phase_one_ws/install/_local_setup_util_ps1.py'
+[1.696s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mido/Music/phase_one_ws/install/setup.ps1'
+[1.697s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mido/Music/phase_one_ws/install/local_setup.sh'
+[1.698s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/mido/Music/phase_one_ws/install/_local_setup_util_sh.py'
+[1.698s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mido/Music/phase_one_ws/install/setup.sh'
+[1.699s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mido/Music/phase_one_ws/install/local_setup.bash'
+[1.699s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mido/Music/phase_one_ws/install/setup.bash'
+[1.701s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mido/Music/phase_one_ws/install/local_setup.zsh'
+[1.701s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mido/Music/phase_one_ws/install/setup.zsh'

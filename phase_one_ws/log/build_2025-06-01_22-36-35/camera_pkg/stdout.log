@@ -1,0 +1,33 @@
+running egg_info
+creating ../../build/camera_pkg/camera_pkg.egg-info
+writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mido/Music/phase_one_ws/build/camera_pkg/build
+creating /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib
+creating /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib/camera_pkg
+copying camera_pkg/__init__.py -> /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib/camera_pkg
+running install
+running install_lib
+creating /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+copying /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib/camera_pkg/__init__.py -> /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+byte-compiling /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index
+creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index/resource_index
+creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index/resource_index/packages
+copying resource/camera_pkg -> /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index/resource_index/packages
+copying package.xml -> /home/mido/Music/phase_one_ws/install/camera_pkg/share/camera_pkg
+creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/camera_pkg/launch
+copying launch/camera.launch.py -> /home/mido/Music/phase_one_ws/install/camera_pkg/share/camera_pkg/launch
+running install_egg_info
+Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/mido/Music/phase_one_ws/build/camera_pkg/install.log'

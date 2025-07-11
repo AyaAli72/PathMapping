@@ -1,0 +1,21 @@
+[0.721s] Invoking command in '/home/mido/Music/phase_one_ws/src/bumperbot_controller': PYTHONPATH=/home/mido/Music/phase_one_ws/build/bumperbot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bumperbot_controller build --build-base /home/mido/Music/phase_one_ws/build/bumperbot_controller/build install --record /home/mido/Music/phase_one_ws/build/bumperbot_controller/install.log --single-version-externally-managed install_data
+[0.958s] running egg_info
+[0.958s] writing ../../build/bumperbot_controller/bumperbot_controller.egg-info/PKG-INFO
+[0.958s] writing dependency_links to ../../build/bumperbot_controller/bumperbot_controller.egg-info/dependency_links.txt
+[0.958s] writing entry points to ../../build/bumperbot_controller/bumperbot_controller.egg-info/entry_points.txt
+[0.959s] writing requirements to ../../build/bumperbot_controller/bumperbot_controller.egg-info/requires.txt
+[0.959s] writing top-level names to ../../build/bumperbot_controller/bumperbot_controller.egg-info/top_level.txt
+[0.961s] reading manifest file '../../build/bumperbot_controller/bumperbot_controller.egg-info/SOURCES.txt'
+[0.969s] writing manifest file '../../build/bumperbot_controller/bumperbot_controller.egg-info/SOURCES.txt'
+[0.969s] running build
+[0.969s] running build_py
+[0.970s] running install
+[0.970s] running install_lib
+[0.971s] running install_data
+[0.971s] running install_egg_info
+[0.972s] removing '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller-0.0.0-py3.10.egg-info' (and everything under it)
+[0.973s] Copying ../../build/bumperbot_controller/bumperbot_controller.egg-info to /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller-0.0.0-py3.10.egg-info
+[0.973s] running install_scripts
+[0.989s] Installing simple_controller script to /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller
+[0.989s] writing list of installed files to '/home/mido/Music/phase_one_ws/build/bumperbot_controller/install.log'
+[1.011s] Invoked command in '/home/mido/Music/phase_one_ws/src/bumperbot_controller' returned '0': PYTHONPATH=/home/mido/Music/phase_one_ws/build/bumperbot_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/bumperbot_controller build --build-base /home/mido/Music/phase_one_ws/build/bumperbot_controller/build install --record /home/mido/Music/phase_one_ws/build/bumperbot_controller/install.log --single-version-externally-managed install_data

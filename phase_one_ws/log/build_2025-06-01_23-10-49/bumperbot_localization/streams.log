@@ -1,0 +1,43 @@
+[0.019s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_localization -- -j16 -l16
+[0.111s] Built target ament_cmake_python_copy_bumperbot_localization
+[0.453s] running egg_info
+[0.454s] writing bumperbot_localization.egg-info/PKG-INFO
+[0.455s] writing dependency_links to bumperbot_localization.egg-info/dependency_links.txt
+[0.455s] writing top-level names to bumperbot_localization.egg-info/top_level.txt
+[0.459s] reading manifest file 'bumperbot_localization.egg-info/SOURCES.txt'
+[0.460s] writing manifest file 'bumperbot_localization.egg-info/SOURCES.txt'
+[0.520s] Built target ament_cmake_python_build_bumperbot_localization_egg
+[0.542s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_localization -- -j16 -l16
+[0.546s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_localization
+[0.558s] -- Install configuration: ""
+[0.558s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/pythonpath.sh
+[0.558s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/pythonpath.dsv
+[0.558s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info
+[0.558s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/PKG-INFO
+[0.559s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/top_level.txt
+[0.559s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/dependency_links.txt
+[0.559s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/SOURCES.txt
+[0.559s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization
+[0.559s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization/__init__.py
+[0.603s] Listing '/home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization'...
+[0.613s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/launch
+[0.613s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/launch/local_localization.launch.py
+[0.613s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/config
+[0.615s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/config/ekf.yaml
+[0.615s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/rviz
+[0.615s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/ament_index/resource_index/package_run_dependencies/bumperbot_localization
+[0.615s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/ament_index/resource_index/parent_prefix_path/bumperbot_localization
+[0.615s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/ament_prefix_path.sh
+[0.616s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/ament_prefix_path.dsv
+[0.616s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/path.sh
+[0.616s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/path.dsv
+[0.616s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.bash
+[0.616s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.sh
+[0.617s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.zsh
+[0.618s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.dsv
+[0.618s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.dsv
+[0.618s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/ament_index/resource_index/packages/bumperbot_localization
+[0.619s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/cmake/bumperbot_localizationConfig.cmake
+[0.619s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/cmake/bumperbot_localizationConfig-version.cmake
+[0.619s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.xml
+[0.627s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_localization

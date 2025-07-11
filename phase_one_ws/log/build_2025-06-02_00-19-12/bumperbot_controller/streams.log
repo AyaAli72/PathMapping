@@ -1,0 +1,11 @@
+[0.024s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/home/mido/Music/phase_one_ws/install/camera_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_controller -- -j16 -l16
+[0.116s] [ 50%] Built target ament_cmake_python_copy_bumperbot_controller
+[0.116s] [100%] Built target noisy_controller
+[0.116s] [100%] Built target simple_controller
+[0.525s] running egg_info
+[0.525s] writing bumperbot_controller.egg-info/PKG-INFO
+[0.525s] writing dependency_links to bumperbot_controller.egg-info/dependency_links.txt
+[0.526s] writing top-level names to bumperbot_controller.egg-info/top_level.txt
+[0.532s] reading manifest file 'bumperbot_controller.egg-info/SOURCES.txt'
+[0.533s] writing manifest file 'bumperbot_controller.egg-info/SOURCES.txt'
+[0.606s] [100%] Built target ament_cmake_python_build_bumperbot_controller_egg

@@ -1,0 +1,9 @@
+[ 50%] [32mBuilding CXX object CMakeFiles/noisy_controller.dir/src/noisy_controller.cpp.o[0m
+[ 75%] Built target simple_controller
+[01m[Kcc1plus:[m[K [01;31m[Kfatal error: [m[K/home/mido/Music/phase_one_ws/src/bumperbot_controller/src/noisy_controller.cpp: No such file or directory
+compilation terminated.
+gmake[2]: *** [CMakeFiles/noisy_controller.dir/build.make:76: CMakeFiles/noisy_controller.dir/src/noisy_controller.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:168: CMakeFiles/noisy_controller.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+[ 75%] Built target ament_cmake_python_copy_bumperbot_controller
+gmake: *** [Makefile:146: all] Error 2

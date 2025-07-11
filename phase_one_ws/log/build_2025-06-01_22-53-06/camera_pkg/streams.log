@@ -1,0 +1,20 @@
+[1.138s] Invoking command in '/home/mido/Music/phase_one_ws/src/camera_pkg': PYTHONPATH=/home/mido/Music/phase_one_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/mido/Music/phase_one_ws/build/camera_pkg/build install --record /home/mido/Music/phase_one_ws/build/camera_pkg/install.log --single-version-externally-managed install_data
+[1.452s] running egg_info
+[1.453s] writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+[1.453s] writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+[1.453s] writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+[1.454s] writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+[1.454s] writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+[1.459s] reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[1.464s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[1.464s] running build
+[1.464s] running build_py
+[1.465s] running install
+[1.465s] running install_lib
+[1.466s] running install_data
+[1.466s] running install_egg_info
+[1.468s] removing '/home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[1.468s] Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.0.0-py3.10.egg-info
+[1.470s] running install_scripts
+[1.496s] writing list of installed files to '/home/mido/Music/phase_one_ws/build/camera_pkg/install.log'
+[1.570s] Invoked command in '/home/mido/Music/phase_one_ws/src/camera_pkg' returned '0': PYTHONPATH=/home/mido/Music/phase_one_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/mido/Music/phase_one_ws/build/camera_pkg/build install --record /home/mido/Music/phase_one_ws/build/camera_pkg/install.log --single-version-externally-managed install_data

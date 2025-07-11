@@ -1,0 +1,10 @@
+# Goal definition
+geometry_msgs/Point target_point  # Define the target point
+
+---
+# Result definition
+bool success  # Indicate if the target was reached successfully
+
+---
+# Feedback definition
+geometry_msgs/Point current_position  # Provide the current position

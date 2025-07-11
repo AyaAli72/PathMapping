@@ -1,0 +1,10 @@
+[console_scripts]
+current_position = motion_pkg.current_position:main
+lidar_sensor = motion_pkg.lidar_sensor:main
+mark_target = motion_pkg.mark_target:main
+path_planning_1 = motion_pkg.path_planning_1:main
+path_planning_mariam_version = motion_pkg.path_planning_mariam_version:main
+points_sender = motion_pkg.points_sender:main
+random_points_generator = motion_pkg.random_points_generator:main
+speed_control = motion_pkg.speed_control:main
+

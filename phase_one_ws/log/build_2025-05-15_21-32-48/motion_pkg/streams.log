@@ -1,0 +1,28 @@
+[0.560s] Invoking command in '/home/mido/Music/phase_one_ws/src/motion_pkg': AMENT_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file LD_LIBRARY_PATH=/home/mido/Music/phase_one_ws/install/action_file/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:/home/mido/Music/phase_one_ws/install/action_file/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data
+[0.777s] running egg_info
+[0.778s] writing ../../build/motion_pkg/motion_pkg.egg-info/PKG-INFO
+[0.778s] writing dependency_links to ../../build/motion_pkg/motion_pkg.egg-info/dependency_links.txt
+[0.778s] writing entry points to ../../build/motion_pkg/motion_pkg.egg-info/entry_points.txt
+[0.778s] writing requirements to ../../build/motion_pkg/motion_pkg.egg-info/requires.txt
+[0.778s] writing top-level names to ../../build/motion_pkg/motion_pkg.egg-info/top_level.txt
+[0.780s] reading manifest file '../../build/motion_pkg/motion_pkg.egg-info/SOURCES.txt'
+[0.781s] writing manifest file '../../build/motion_pkg/motion_pkg.egg-info/SOURCES.txt'
+[0.781s] running build
+[0.781s] running build_py
+[0.781s] running install
+[0.782s] running install_lib
+[0.783s] running install_data
+[0.783s] running install_egg_info
+[0.784s] removing '/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[0.785s] Copying ../../build/motion_pkg/motion_pkg.egg-info to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg-0.0.0-py3.10.egg-info
+[0.785s] running install_scripts
+[0.800s] Installing current_position script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.800s] Installing lidar_sensor script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.800s] Installing mark_target script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.800s] Installing path_planning_1 script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.800s] Installing path_planning_mariam_version script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.801s] Installing points_sender script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.801s] Installing random_points_generator script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.801s] Installing speed_control script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.801s] writing list of installed files to '/home/mido/Music/phase_one_ws/build/motion_pkg/install.log'
+[0.823s] Invoked command in '/home/mido/Music/phase_one_ws/src/motion_pkg' returned '0': AMENT_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file LD_LIBRARY_PATH=/home/mido/Music/phase_one_ws/install/action_file/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:/home/mido/Music/phase_one_ws/install/action_file/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data

@@ -1,0 +1,6 @@
+[31mCMake Error at cmake_install.cmake:70 (file):
+  file INSTALL cannot find
+  "/home/mido/Music/phase_one_ws/src/bumperbot_localization/rviz": No such
+  file or directory.
+
+[0m

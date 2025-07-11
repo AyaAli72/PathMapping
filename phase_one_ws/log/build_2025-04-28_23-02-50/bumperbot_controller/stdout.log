@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/bumperbot_controller/bumperbot_controller.egg-info/PKG-INFO
+writing dependency_links to ../../build/bumperbot_controller/bumperbot_controller.egg-info/dependency_links.txt
+writing entry points to ../../build/bumperbot_controller/bumperbot_controller.egg-info/entry_points.txt
+writing requirements to ../../build/bumperbot_controller/bumperbot_controller.egg-info/requires.txt
+writing top-level names to ../../build/bumperbot_controller/bumperbot_controller.egg-info/top_level.txt
+reading manifest file '../../build/bumperbot_controller/bumperbot_controller.egg-info/SOURCES.txt'
+writing manifest file '../../build/bumperbot_controller/bumperbot_controller.egg-info/SOURCES.txt'
+running build
+running build_py
+copying bumperbot_controller/simple_controller.py -> /home/mido/Music/phase_one_ws/build/bumperbot_controller/build/lib/bumperbot_controller
+running install
+running install_lib
+copying /home/mido/Music/phase_one_ws/build/bumperbot_controller/build/lib/bumperbot_controller/simple_controller.py -> /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller
+byte-compiling /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller/simple_controller.py to simple_controller.cpython-310.pyc
+running install_data
+running install_egg_info
+removing '/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/bumperbot_controller/bumperbot_controller.egg-info to /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller-0.0.0-py3.10.egg-info
+running install_scripts
+Installing simple_controller script to /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller
+writing list of installed files to '/home/mido/Music/phase_one_ws/build/bumperbot_controller/install.log'

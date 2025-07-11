@@ -1,0 +1,11 @@
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/uninstall.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/bumperbot_localization_uninstall.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/ament_cmake_python_copy_bumperbot_localization.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/ament_cmake_python_build_bumperbot_localization_egg.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/test.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/edit_cache.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/rebuild_cache.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/list_install_components.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/install.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/install/local.dir
+/home/mido/Music/phase_one_ws/build/bumperbot_localization/CMakeFiles/install/strip.dir

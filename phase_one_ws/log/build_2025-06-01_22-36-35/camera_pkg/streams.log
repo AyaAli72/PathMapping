@@ -1,0 +1,35 @@
+[1.105s] Invoking command in '/home/mido/Music/phase_one_ws/src/camera_pkg': PYTHONPATH=/home/mido/Music/phase_one_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/mido/Music/phase_one_ws/build/camera_pkg/build install --record /home/mido/Music/phase_one_ws/build/camera_pkg/install.log --single-version-externally-managed install_data
+[1.387s] running egg_info
+[1.387s] creating ../../build/camera_pkg/camera_pkg.egg-info
+[1.388s] writing ../../build/camera_pkg/camera_pkg.egg-info/PKG-INFO
+[1.388s] writing dependency_links to ../../build/camera_pkg/camera_pkg.egg-info/dependency_links.txt
+[1.388s] writing entry points to ../../build/camera_pkg/camera_pkg.egg-info/entry_points.txt
+[1.388s] writing requirements to ../../build/camera_pkg/camera_pkg.egg-info/requires.txt
+[1.388s] writing top-level names to ../../build/camera_pkg/camera_pkg.egg-info/top_level.txt
+[1.391s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[1.395s] reading manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[1.395s] writing manifest file '../../build/camera_pkg/camera_pkg.egg-info/SOURCES.txt'
+[1.396s] running build
+[1.396s] running build_py
+[1.396s] creating /home/mido/Music/phase_one_ws/build/camera_pkg/build
+[1.396s] creating /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib
+[1.396s] creating /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib/camera_pkg
+[1.396s] copying camera_pkg/__init__.py -> /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib/camera_pkg
+[1.396s] running install
+[1.396s] running install_lib
+[1.397s] creating /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[1.397s] copying /home/mido/Music/phase_one_ws/build/camera_pkg/build/lib/camera_pkg/__init__.py -> /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg
+[1.398s] byte-compiling /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg/__init__.py to __init__.cpython-310.pyc
+[1.398s] running install_data
+[1.398s] creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index
+[1.398s] creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index/resource_index
+[1.398s] creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index/resource_index/packages
+[1.398s] copying resource/camera_pkg -> /home/mido/Music/phase_one_ws/install/camera_pkg/share/ament_index/resource_index/packages
+[1.398s] copying package.xml -> /home/mido/Music/phase_one_ws/install/camera_pkg/share/camera_pkg
+[1.398s] creating /home/mido/Music/phase_one_ws/install/camera_pkg/share/camera_pkg/launch
+[1.399s] copying launch/camera.launch.py -> /home/mido/Music/phase_one_ws/install/camera_pkg/share/camera_pkg/launch
+[1.399s] running install_egg_info
+[1.400s] Copying ../../build/camera_pkg/camera_pkg.egg-info to /home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages/camera_pkg-0.0.0-py3.10.egg-info
+[1.401s] running install_scripts
+[1.424s] writing list of installed files to '/home/mido/Music/phase_one_ws/build/camera_pkg/install.log'
+[1.467s] Invoked command in '/home/mido/Music/phase_one_ws/src/camera_pkg' returned '0': PYTHONPATH=/home/mido/Music/phase_one_ws/build/camera_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/camera_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/camera_pkg build --build-base /home/mido/Music/phase_one_ws/build/camera_pkg/build install --record /home/mido/Music/phase_one_ws/build/camera_pkg/install.log --single-version-externally-managed install_data

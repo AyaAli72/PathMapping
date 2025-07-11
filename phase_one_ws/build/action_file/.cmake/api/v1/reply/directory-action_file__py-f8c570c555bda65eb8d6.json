@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "action_file__py",
+		"source" : "/home/mido/Music/phase_one_ws/build/action_file/action_file__py"
+	}
+}

@@ -1,0 +1,60 @@
+[0.025s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_localization -- -j16 -l16
+[0.056s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.261s] -- Found rclcpp: 16.0.12 (/opt/ros/humble/share/rclcpp/cmake)
+[0.295s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.297s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.302s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.311s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.322s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.363s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.366s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.513s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.577s] -- Found rclpy: 3.3.16 (/opt/ros/humble/share/rclpy/cmake)
+[0.577s] -- Found nav_msgs: 4.8.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[0.608s] -- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.631s] -- Found tf2: 0.25.12 (/opt/ros/humble/share/tf2/cmake)
+[0.813s] -- Configuring done
+[0.821s] -- Generating done
+[0.825s] -- Build files have been written to: /home/mido/Music/phase_one_ws/build/bumperbot_localization
+[0.897s] Built target ament_cmake_python_copy_bumperbot_localization
+[1.250s] running egg_info
+[1.250s] writing bumperbot_localization.egg-info/PKG-INFO
+[1.251s] writing dependency_links to bumperbot_localization.egg-info/dependency_links.txt
+[1.251s] writing top-level names to bumperbot_localization.egg-info/top_level.txt
+[1.255s] reading manifest file 'bumperbot_localization.egg-info/SOURCES.txt'
+[1.262s] writing manifest file 'bumperbot_localization.egg-info/SOURCES.txt'
+[1.311s] Built target ament_cmake_python_build_bumperbot_localization_egg
+[1.336s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_localization -- -j16 -l16
+[1.338s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_localization
+[1.349s] -- Install configuration: ""
+[1.349s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/pythonpath.sh
+[1.349s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/pythonpath.dsv
+[1.349s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info
+[1.350s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/PKG-INFO
+[1.350s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/top_level.txt
+[1.350s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/dependency_links.txt
+[1.350s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization-0.0.0-py3.10.egg-info/SOURCES.txt
+[1.351s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization
+[1.351s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization/__init__.py
+[1.385s] Listing '/home/mido/Music/phase_one_ws/install/bumperbot_localization/local/lib/python3.10/dist-packages/bumperbot_localization'...
+[1.391s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/launch
+[1.391s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/launch/local_localization.launch.py
+[1.391s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/config
+[1.391s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/config/ekf.yaml
+[1.392s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/rviz
+[1.392s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/ament_index/resource_index/package_run_dependencies/bumperbot_localization
+[1.392s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/ament_index/resource_index/parent_prefix_path/bumperbot_localization
+[1.392s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/ament_prefix_path.sh
+[1.392s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/ament_prefix_path.dsv
+[1.392s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/path.sh
+[1.392s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/environment/path.dsv
+[1.393s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.bash
+[1.393s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.sh
+[1.393s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.zsh
+[1.393s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/local_setup.dsv
+[1.393s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.dsv
+[1.394s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/ament_index/resource_index/packages/bumperbot_localization
+[1.394s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/cmake/bumperbot_localizationConfig.cmake
+[1.394s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/cmake/bumperbot_localizationConfig-version.cmake
+[1.394s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_localization/share/bumperbot_localization/package.xml
+[1.398s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_localization

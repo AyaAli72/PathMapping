@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/bumperbot_controller/bumperbot_controller.egg-info
+writing ../../build/bumperbot_controller/bumperbot_controller.egg-info/PKG-INFO
+writing dependency_links to ../../build/bumperbot_controller/bumperbot_controller.egg-info/dependency_links.txt
+writing entry points to ../../build/bumperbot_controller/bumperbot_controller.egg-info/entry_points.txt
+writing requirements to ../../build/bumperbot_controller/bumperbot_controller.egg-info/requires.txt
+writing top-level names to ../../build/bumperbot_controller/bumperbot_controller.egg-info/top_level.txt
+writing manifest file '../../build/bumperbot_controller/bumperbot_controller.egg-info/SOURCES.txt'
+reading manifest file '../../build/bumperbot_controller/bumperbot_controller.egg-info/SOURCES.txt'
+writing manifest file '../../build/bumperbot_controller/bumperbot_controller.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/mido/Music/phase_one_ws/build/bumperbot_controller/build
+creating /home/mido/Music/phase_one_ws/build/bumperbot_controller/build/lib
+creating /home/mido/Music/phase_one_ws/build/bumperbot_controller/build/lib/bumperbot_controller
+copying bumperbot_controller/__init__.py -> /home/mido/Music/phase_one_ws/build/bumperbot_controller/build/lib/bumperbot_controller
+running install
+running install_lib
+creating /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller
+copying /home/mido/Music/phase_one_ws/build/bumperbot_controller/build/lib/bumperbot_controller/__init__.py -> /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller
+byte-compiling /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/ament_index
+creating /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/ament_index/resource_index
+creating /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/ament_index/resource_index/packages
+copying resource/bumperbot_controller -> /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/ament_index/resource_index/packages
+copying package.xml -> /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller
+creating /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/config
+copying config/bumperbot_controllers.yaml -> /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/config
+creating /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/launch
+copying launch/controller.launch.py -> /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/launch
+running install_egg_info
+Copying ../../build/bumperbot_controller/bumperbot_controller.egg-info to /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/python3.10/site-packages/bumperbot_controller-0.0.0-py3.10.egg-info
+running install_scripts
+writing list of installed files to '/home/mido/Music/phase_one_ws/build/bumperbot_controller/install.log'

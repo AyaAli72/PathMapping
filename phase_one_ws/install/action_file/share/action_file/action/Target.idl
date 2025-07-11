@@ -1,0 +1,31 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from action_file/action/Target.action
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Point.idl"
+
+module action_file {
+  module action {
+    @verbatim (language="comment", text=
+      "Goal definition")
+    struct Target_Goal {
+      @verbatim (language="comment", text=
+        "Define the target point")
+      geometry_msgs::msg::Point target_point;
+    };
+    @verbatim (language="comment", text=
+      "Result definition")
+    struct Target_Result {
+      @verbatim (language="comment", text=
+        "Indicate if the target was reached successfully")
+      boolean success;
+    };
+    @verbatim (language="comment", text=
+      "Feedback definition")
+    struct Target_Feedback {
+      @verbatim (language="comment", text=
+        "Provide the current position")
+      geometry_msgs::msg::Point current_position;
+    };
+  };
+};

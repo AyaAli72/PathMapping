@@ -1,0 +1,1632 @@
+
+#Version1
+'''
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import TwistStamped, Pose2D
+from std_msgs.msg import Float64MultiArray
+import numpy as np
+import math
+import random
+import time
+
+class RRTNode:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.parent = None
+
+class EnhancedRRTNavigator(Node):
+    def __init__(self, vehicle_length, goal, map_size):
+        super().__init__('enhanced_rrt_navigator')
+
+        self.goal = RRTNode(goal[0], goal[1])
+        self.map_size = map_size
+        self.step_size = 0.4
+        self.max_iter = 2000
+        self.goal_region_radius = 0.15
+        self.waypoint_tolerance = 0.15
+
+        self.safety_margin = 0.6
+        self.backup_distance = 1.2
+        self.lateral_escape_distance = 1.5
+        self.max_backup_attempts = 2
+        self.evasion_retry_limit = 3
+        self.turn_around_attempts_limit = 2
+        self.turn_around_trigger_limit = 5
+        self.obstacle_cycles = 0
+
+        self.vehicle_length = vehicle_length
+        self.current_pose = (0.0, 0.0, 0.0)
+        self.path = []
+        self.path_index = 0
+        self.goal_reached = False
+        self.obstacle_history = []
+        self.current_clearance = {'front': float('inf'), 'left': float('inf'), 'right': float('inf'), 'rear': float('inf')}
+        self.start = None
+        self.evasion_attempts = 0
+        self.turn_around_attempts = 0
+
+        self.normal_speed = 0.4
+        self.precision_speed = 0.15
+        self.rotation_gain = 0.8
+        self.backup_speed = -0.25
+
+        self.wheel_control_pub = self.create_publisher(Float64MultiArray, "simple_velocity_controller/commands", 10)
+        self.cmd_vel_pub = self.create_publisher(TwistStamped, "/bumperbot_controller/cmd_vel", 10)
+        self.create_subscription(LaserScan, '/scan', self.lidar_callback, 10)
+        self.create_subscription(Pose2D, "/robot_pose", self.pose_callback, 10)
+        self.timer = self.create_timer(0.1, self.navigation_cycle)
+
+        self.wheel_radius = 0.033
+        self.wheel_separation = 0.16
+        self.speed_matrix = np.array([
+            [self.wheel_radius/2, self.wheel_radius/2],
+            [self.wheel_radius/self.wheel_separation, -self.wheel_radius/self.wheel_separation]
+        ])
+
+    def pose_callback(self, msg):
+        self.current_pose = (msg.x, msg.y, msg.theta)
+        if self.start is None:
+            self.start = RRTNode(msg.x, msg.y)
+            self.get_logger().info("Initial position set. Starting path planning...")
+            self.plan_path()
+
+    def lidar_callback(self, msg):
+        self.environment_analysis(msg.ranges, msg.angle_min, msg.angle_increment, msg.range_max)
+
+    def environment_analysis(self, ranges, angle_min, angle_inc, max_range):
+        sectors = {'front': (-math.pi/6, math.pi/6), 'left': (math.pi/6, math.pi/2), 'right': (-math.pi/2, -math.pi/6), 'rear': (math.pi/2, 3*math.pi/4)}
+        clearance = {}
+        for sector, (start, end) in sectors.items():
+            sector_ranges = [r for i, r in enumerate(ranges) if start <= (angle_min + i*angle_inc) % (2*math.pi) <= end and not math.isinf(r)]
+            clearance[sector] = np.mean(sector_ranges) if sector_ranges else max_range
+        self.current_clearance = clearance
+        self.obstacle_history.append(clearance)
+
+    def navigation_cycle(self):
+        if self.goal_reached or self.start is None:
+            return
+        if self.near_goal():
+            self.precision_approach()
+            return
+        if self.obstacle_detected():
+            self.obstacle_cycles += 1
+            self.obstacle_response()
+        else:
+            self.reset_obstacle_state()
+            self.path_following()
+
+    def reset_obstacle_state(self):
+        self.evasion_attempts = 0
+        self.turn_around_attempts = 0
+        self.obstacle_cycles = 0
+        if hasattr(self, 'tried_quarter_turn'):
+            del self.tried_quarter_turn
+
+    def obstacle_response(self):
+        if len(self.obstacle_history) < 3:
+            self.backup_maneuver()
+        elif not hasattr(self, 'tried_quarter_turn'):
+            self.get_logger().info("Trying 90-degree left turn before considering full turn...")
+            self.tried_quarter_turn = True
+            self.rotate_to_angle((self.current_pose[2] + math.pi / 2) % (2 * math.pi))
+        elif (self.turn_around_attempts < self.turn_around_attempts_limit and self.obstacle_cycles >= self.turn_around_trigger_limit):
+            self.get_logger().info("Obstacle persists. Trying 180-degree turn...")
+            self.rotate_to_angle((self.current_pose[2] + math.pi) % (2 * math.pi))
+            self.turn_around_attempts += 1
+            self.obstacle_cycles = 0
+            self.plan_path()
+        else:
+            if (self.turn_around_attempts < self.turn_around_attempts_limit and self.obstacle_cycles >= self.turn_around_trigger_limit):
+                self.get_logger().info("Obstacle persists. Trying 180-degree turn...")
+                self.rotate_to_angle((self.current_pose[2] + math.pi) % (2 * math.pi))
+                self.turn_around_attempts += 1
+                self.obstacle_cycles = 0
+                self.plan_path()
+            else:
+                self.lateral_evasion()
+
+    def near_goal(self):
+        return math.hypot(self.current_pose[0]-self.goal.x, self.current_pose[1]-self.goal.y) < 1.0
+
+    def precision_approach(self):
+        dx = self.goal.x - self.current_pose[0]
+        dy = self.goal.y - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.goal_region_radius:
+            self.goal_reached = True
+            self.stop_motion()
+            return
+        if abs(angle_error) > math.radians(5):
+            self.rotate_to_angle(target_angle)
+        else:
+            self.linear_move(min(self.precision_speed, 0.2 * distance))
+
+    def obstacle_detected(self):
+        return self.current_clearance['front'] < self.vehicle_length + self.safety_margin
+
+    def backup_maneuver(self):
+        backup_duration = self.backup_distance / abs(self.backup_speed)
+        if not hasattr(self, 'backup_start'):
+            self.backup_start = time.time()
+            self.get_logger().warn("Initiating backup maneuver...")
+        elapsed = time.time() - self.backup_start
+        if elapsed < backup_duration:
+            self.set_velocity(self.backup_speed, 0)
+        else:
+            del self.backup_start
+            self.plan_path()
+
+    def lateral_evasion(self):
+        if not hasattr(self, 'escape_direction'):
+            self.escape_direction = self.choose_evasion_direction()
+            self.escape_target = self.calculate_escape_vector()
+            self.get_logger().info(f"Executing lateral evasion to {self.escape_direction}")
+            self.evasion_attempts = 0
+        self.evasion_attempts += 1
+        if self.evasion_attempts > self.evasion_retry_limit:
+            self.get_logger().warn("Evasion attempts exceeded. Switching to backup maneuver.")
+            del self.escape_direction
+            self.backup_maneuver()
+            return
+        dx = self.escape_target[0] - self.current_pose[0]
+        dy = self.escape_target[1] - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        if distance < 0.3:
+            del self.escape_direction
+            self.plan_path()
+            return
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if abs(angle_error) > math.radians(15):
+            self.rotate_to_angle(target_angle)
+        else:
+            self.linear_move(self.normal_speed * 0.6)
+
+    def choose_evasion_direction(self):
+        left_clear = sum(c['left'] for c in self.obstacle_history[-3:])/3
+        right_clear = sum(c['right'] for c in self.obstacle_history[-3:])/3
+        return 'left' if left_clear >= right_clear else 'right'
+
+    def calculate_escape_vector(self):
+        angle = math.pi/3 if self.escape_direction == 'left' else -math.pi/3
+        return (
+            self.current_pose[0] + self.lateral_escape_distance * math.cos(angle),
+            self.current_pose[1] + self.lateral_escape_distance * math.sin(angle)
+        )
+
+    def path_following(self):
+        if not self.path or self.path_index >= len(self.path):
+            self.plan_path()
+            return
+        target = self.path[self.path_index]
+        dx = target[0] - self.current_pose[0]
+        dy = target[1] - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.waypoint_tolerance:
+            self.path_index += 1
+            return
+        if abs(angle_error) > math.radians(20):
+            self.rotate_to_angle(target_angle)
+        else:
+            speed = self.normal_speed * min(1.0, distance / 0.5)
+            self.set_velocity(speed, 0.5 * angle_error)
+
+    def plan_path(self):
+        if self.start is None:
+            self.get_logger().warn("Path planning called before initial position received!")
+            return
+        self.node_list = [self.start]
+        path_found = False
+        for _ in range(self.max_iter):
+            rand = self.sample_point()
+            nearest = self.find_nearest(rand)
+            new_node = self.extend_tree(nearest, rand)
+            if self.node_valid(new_node):
+                new_node.parent = nearest
+                self.node_list.append(new_node)
+                if self.reached_target(new_node):
+                    self.path = self.build_path(new_node)
+                    self.path_index = 0
+                    path_found = True
+                    break
+        if not path_found:
+            self.get_logger().warn("Path planning unsuccessful, retrying...")
+            time.sleep(0.5)
+            self.plan_path()
+
+    def find_nearest(self, target_node):
+        return min(self.node_list, key=lambda n: math.hypot(n.x - target_node.x, n.y - target_node.y))
+
+    def sample_point(self):
+        if random.random() < 0.4:
+            return self.goal
+        return RRTNode(random.uniform(0, self.map_size[0]), random.uniform(0, self.map_size[1]))
+
+    def extend_tree(self, from_node, to_node):
+        dx = to_node.x - from_node.x
+        dy = to_node.y - from_node.y
+        distance = math.hypot(dx, dy)
+        step = min(distance, self.step_size)
+        theta = math.atan2(dy, dx)
+        return RRTNode(from_node.x + step * math.cos(theta), from_node.y + step * math.sin(theta))
+
+    def node_valid(self, node):
+        if not node:
+            return False
+        front_clear = self.current_clearance.get('front', 0) > self.vehicle_length + 0.5
+        lateral_clear = True
+        if hasattr(self, 'escape_direction'):
+            lateral_clear = self.current_clearance.get(self.escape_direction, 0) > 0.7
+        return front_clear and lateral_clear
+
+    def reached_target(self, node):
+        return math.hypot(node.x - self.goal.x, node.y - self.goal.y) <= self.goal_region_radius
+
+    def build_path(self, node):
+        path = []
+        while node:
+            path.append([node.x, node.y])
+            node = node.parent
+        return path[::-1]
+
+    def angle_difference(self, target):
+        return (target - self.current_pose[2] + math.pi) % (2 * math.pi) - math.pi
+
+    def set_velocity(self, linear, angular):
+        cmd = TwistStamped()
+        cmd.header.stamp = self.get_clock().now().to_msg()
+        cmd.twist.linear.x = float(linear)
+        cmd.twist.angular.z = float(angular)
+        self.cmd_vel_pub.publish(cmd)
+        wheel_speed = np.linalg.inv(self.speed_matrix) @ np.array([[linear], [angular]])
+        msg = Float64MultiArray()
+        msg.data = [float(wheel_speed[1, 0]), float(wheel_speed[0, 0])]
+        self.wheel_control_pub.publish(msg)
+
+    def stop_motion(self):
+        self.set_velocity(0.0, 0.0)
+
+    def rotate_to_angle(self, target_angle):
+        angle_error = self.angle_difference(target_angle)
+        self.set_velocity(0.0, self.rotation_gain * angle_error)
+
+    def linear_move(self, speed):
+        self.set_velocity(speed, 0.0)
+
+def main():
+    rclpy.init()
+    navigator = EnhancedRRTNavigator(vehicle_length=0.235, goal=[0.0, 0.0], map_size=[100, 100])
+    rclpy.spin(navigator)
+    navigator.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+'''
+
+
+#Version2
+'''
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import TwistStamped, Pose2D
+from std_msgs.msg import Float64MultiArray
+import numpy as np
+import math
+import random
+import time
+
+class RRTNode:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.parent = None
+
+class EnhancedRRTNavigator(Node):
+    def __init__(self, vehicle_length, goal, map_size):
+        super().__init__('enhanced_rrt_navigator')
+
+        self.goal = RRTNode(goal[0], goal[1])
+        self.map_size = map_size
+        self.step_size = 0.4
+        self.max_iter = 2000
+        self.goal_region_radius = 0.15
+        self.waypoint_tolerance = 0.15
+
+        self.safety_margin = 0.6
+        self.backup_distance = 1.2
+        self.lateral_escape_distance = 1.5
+        self.max_backup_attempts = 2
+        self.evasion_retry_limit = 3
+        self.turn_around_attempts_limit = 2
+        self.turn_around_trigger_limit = 5
+        self.obstacle_cycles = 0
+
+        self.vehicle_length = vehicle_length
+        self.current_pose = (0.0, 0.0, 0.0)
+        self.path = []
+        self.path_index = 0
+        self.goal_reached = False
+        self.obstacle_history = []
+        self.current_clearance = {'front': float('inf'), 'left': float('inf'), 'right': float('inf'), 'rear': float('inf')}
+        self.start = None
+        self.evasion_attempts = 0
+        self.turn_around_attempts = 0
+
+        self.normal_speed = 0.4
+        self.precision_speed = 0.15
+        self.rotation_gain = 0.8
+        self.backup_speed = -0.25
+
+        self.wheel_control_pub = self.create_publisher(Float64MultiArray, "simple_velocity_controller/commands", 10)
+        self.cmd_vel_pub = self.create_publisher(TwistStamped, "/bumperbot_controller/cmd_vel", 10)
+        self.create_subscription(LaserScan, '/scan', self.lidar_callback, 10)
+        self.create_subscription(Pose2D, "/robot_pose", self.pose_callback, 10)
+        self.timer = self.create_timer(0.1, self.navigation_cycle)
+
+        self.wheel_radius = 0.033
+        self.wheel_separation = 0.16
+        self.speed_matrix = np.array([
+            [self.wheel_radius/2, self.wheel_radius/2],
+            [self.wheel_radius/self.wheel_separation, -self.wheel_radius/self.wheel_separation]
+        ])
+
+    def pose_callback(self, msg):
+        self.current_pose = (msg.x, msg.y, msg.theta)
+        if self.start is None:
+            self.start = RRTNode(msg.x, msg.y)
+            self.get_logger().info("Initial position set. Starting path planning...")
+            self.plan_path()
+
+    def lidar_callback(self, msg):
+        self.environment_analysis(msg.ranges, msg.angle_min, msg.angle_increment, msg.range_max)
+
+    def environment_analysis(self, ranges, angle_min, angle_inc, max_range):
+        sectors = {'front': (-math.pi/6, math.pi/6), 'left': (math.pi/6, math.pi/2), 'right': (-math.pi/2, -math.pi/6), 'rear': (math.pi/2, 3*math.pi/4)}
+        clearance = {}
+        for sector, (start, end) in sectors.items():
+            sector_ranges = [r for i, r in enumerate(ranges) if start <= (angle_min + i*angle_inc) % (2*math.pi) <= end and not math.isinf(r)]
+            clearance[sector] = np.mean(sector_ranges) if sector_ranges else max_range
+        self.current_clearance = clearance
+        self.obstacle_history.append(clearance)
+
+    def navigation_cycle(self):
+        if self.goal_reached or self.start is None:
+            return
+        if self.near_goal():
+            self.precision_approach()
+            return
+        if self.obstacle_detected():
+            self.obstacle_cycles += 1
+            self.obstacle_response()
+        else:
+            self.reset_obstacle_state()
+            self.path_following()
+
+    def reset_obstacle_state(self):
+        self.evasion_attempts = 0
+        self.turn_around_attempts = 0
+        self.obstacle_cycles = 0
+        if hasattr(self, 'tried_quarter_turn'):
+            del self.tried_quarter_turn
+
+    def obstacle_response(self):
+        if len(self.obstacle_history) < 3:
+            self.backup_maneuver()
+        elif not hasattr(self, 'tried_quarter_turn'):
+            turn_dir = 'left' if self.current_clearance['left'] > self.current_clearance['right'] else 'right'
+            self.get_logger().info(f"Trying 90-degree {turn_dir} turn before considering full turn...")
+            angle_offset = math.pi / 2 if turn_dir == 'left' else -math.pi / 2
+            self.tried_quarter_turn = True
+            self.rotate_to_angle((self.current_pose[2] + angle_offset) % (2 * math.pi))
+            self.tried_quarter_turn = True
+            self.rotate_to_angle((self.current_pose[2] + math.pi / 2) % (2 * math.pi))
+        elif (self.turn_around_attempts < self.turn_around_attempts_limit and self.obstacle_cycles >= self.turn_around_trigger_limit):
+            self.get_logger().info("Obstacle persists. Trying 180-degree turn...")
+            self.rotate_to_angle((self.current_pose[2] + math.pi) % (2 * math.pi))
+            self.turn_around_attempts += 1
+            self.obstacle_cycles = 0
+            self.plan_path()
+        else:
+            if (self.turn_around_attempts < self.turn_around_attempts_limit and self.obstacle_cycles >= self.turn_around_trigger_limit):
+                self.get_logger().info("Obstacle persists. Trying 180-degree turn...")
+                self.rotate_to_angle((self.current_pose[2] + math.pi) % (2 * math.pi))
+                self.turn_around_attempts += 1
+                self.obstacle_cycles = 0
+                self.plan_path()
+            else:
+                self.lateral_evasion()
+
+    def near_goal(self):
+        return math.hypot(self.current_pose[0]-self.goal.x, self.current_pose[1]-self.goal.y) < 1.0
+
+    def precision_approach(self):
+        dx = self.goal.x - self.current_pose[0]
+        dy = self.goal.y - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.goal_region_radius:
+            self.goal_reached = True
+            self.stop_motion()
+            return
+        if abs(angle_error) > math.radians(5):
+            self.rotate_to_angle(target_angle)
+        else:
+            self.linear_move(min(self.precision_speed, 0.2 * distance))
+
+    def obstacle_detected(self):
+        return self.current_clearance['front'] < self.vehicle_length + self.safety_margin
+
+    def backup_maneuver(self):
+        backup_duration = self.backup_distance / abs(self.backup_speed)
+        if not hasattr(self, 'backup_start'):
+            self.backup_start = time.time()
+            self.get_logger().warn("Initiating backup maneuver...")
+        elapsed = time.time() - self.backup_start
+        if elapsed < backup_duration:
+            self.set_velocity(self.backup_speed, 0)
+        else:
+            del self.backup_start
+            self.plan_path()
+
+    def lateral_evasion(self):
+        if not hasattr(self, 'escape_direction'):
+            self.escape_direction = self.choose_evasion_direction()
+            self.escape_target = self.calculate_escape_vector()
+            self.get_logger().info(f"Executing lateral evasion to {self.escape_direction}")
+            self.evasion_attempts = 0
+        self.evasion_attempts += 1
+        if self.evasion_attempts > self.evasion_retry_limit:
+            self.get_logger().warn("Evasion attempts exceeded. Switching to backup maneuver.")
+            del self.escape_direction
+            self.backup_maneuver()
+            return
+        dx = self.escape_target[0] - self.current_pose[0]
+        dy = self.escape_target[1] - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        if distance < 0.3:
+            del self.escape_direction
+            self.plan_path()
+            return
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if abs(angle_error) > math.radians(15):
+            self.rotate_to_angle(target_angle)
+        else:
+            self.linear_move(self.normal_speed * 0.6)
+
+    def choose_evasion_direction(self):
+        left_clear = sum(c['left'] for c in self.obstacle_history[-3:])/3
+        right_clear = sum(c['right'] for c in self.obstacle_history[-3:])/3
+        return 'left' if left_clear >= right_clear else 'right'
+
+    def calculate_escape_vector(self):
+        angle = math.pi/3 if self.escape_direction == 'left' else -math.pi/3
+        return (
+            self.current_pose[0] + self.lateral_escape_distance * math.cos(angle),
+            self.current_pose[1] + self.lateral_escape_distance * math.sin(angle)
+        )
+
+    def path_following(self):
+        if not self.path or self.path_index >= len(self.path):
+            self.plan_path()
+            return
+        target = self.path[self.path_index]
+        dx = target[0] - self.current_pose[0]
+        dy = target[1] - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.waypoint_tolerance:
+            self.path_index += 1
+            return
+        if abs(angle_error) > math.radians(20):
+            self.rotate_to_angle(target_angle)
+        else:
+            speed = self.normal_speed * min(1.0, distance / 0.5)
+            self.set_velocity(speed, 0.5 * angle_error)
+
+    def plan_path(self):
+        if self.start is None:
+            self.get_logger().warn("Path planning called before initial position received!")
+            return
+        self.node_list = [self.start]
+        path_found = False
+        for _ in range(self.max_iter):
+            rand = self.sample_point()
+            nearest = self.find_nearest(rand)
+            new_node = self.extend_tree(nearest, rand)
+            if self.node_valid(new_node):
+                new_node.parent = nearest
+                self.node_list.append(new_node)
+                if self.reached_target(new_node):
+                    self.path = self.build_path(new_node)
+                    self.path_index = 0
+                    path_found = True
+                    break
+        if not path_found:
+            self.get_logger().warn("Path planning unsuccessful, retrying...")
+            time.sleep(0.5)
+            self.plan_path()
+
+    def find_nearest(self, target_node):
+        return min(self.node_list, key=lambda n: math.hypot(n.x - target_node.x, n.y - target_node.y))
+
+    def sample_point(self):
+        if random.random() < 0.4:
+            return self.goal
+        return RRTNode(random.uniform(0, self.map_size[0]), random.uniform(0, self.map_size[1]))
+
+    def extend_tree(self, from_node, to_node):
+        dx = to_node.x - from_node.x
+        dy = to_node.y - from_node.y
+        distance = math.hypot(dx, dy)
+        step = min(distance, self.step_size)
+        theta = math.atan2(dy, dx)
+        return RRTNode(from_node.x + step * math.cos(theta), from_node.y + step * math.sin(theta))
+
+    def node_valid(self, node):
+        if not node:
+            return False
+        front_clear = self.current_clearance.get('front', 0) > self.vehicle_length + 0.5
+        lateral_clear = True
+        if hasattr(self, 'escape_direction'):
+            lateral_clear = self.current_clearance.get(self.escape_direction, 0) > 0.7
+        return front_clear and lateral_clear
+
+    def reached_target(self, node):
+        return math.hypot(node.x - self.goal.x, node.y - self.goal.y) <= self.goal_region_radius
+
+    def build_path(self, node):
+        path = []
+        while node:
+            path.append([node.x, node.y])
+            node = node.parent
+        return path[::-1]
+
+    def angle_difference(self, target):
+        return (target - self.current_pose[2] + math.pi) % (2 * math.pi) - math.pi
+
+    def set_velocity(self, linear, angular):
+        cmd = TwistStamped()
+        cmd.header.stamp = self.get_clock().now().to_msg()
+        cmd.twist.linear.x = float(linear)
+        cmd.twist.angular.z = float(angular)
+        self.cmd_vel_pub.publish(cmd)
+        wheel_speed = np.linalg.inv(self.speed_matrix) @ np.array([[linear], [angular]])
+        msg = Float64MultiArray()
+        msg.data = [float(wheel_speed[1, 0]), float(wheel_speed[0, 0])]
+        self.wheel_control_pub.publish(msg)
+
+    def stop_motion(self):
+        self.set_velocity(0.0, 0.0)
+
+    def rotate_to_angle(self, target_angle):
+        angle_error = self.angle_difference(target_angle)
+        self.set_velocity(0.0, self.rotation_gain * angle_error)
+
+    def linear_move(self, speed):
+        self.set_velocity(speed, 0.0)
+
+def main():
+    rclpy.init()
+    navigator = EnhancedRRTNavigator(vehicle_length=0.235, goal=[5.0, 1.0], map_size=[100, 100])
+    rclpy.spin(navigator)
+    navigator.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+
+'''
+
+
+
+
+#Version3
+'''
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import TwistStamped, Pose2D
+from std_msgs.msg import Float64MultiArray
+import numpy as np
+import math
+import random
+import time
+
+class RRTNode:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.parent = None
+
+class EnhancedRRTNavigator(Node):
+    def __init__(self, vehicle_length, goal, map_size):
+        super().__init__('enhanced_rrt_navigator')
+
+        self.goal = RRTNode(goal[0], goal[1])
+        self.map_size = map_size
+        self.step_size = 0.4
+        self.max_iter = 2000
+        self.goal_region_radius = 0.15
+        self.waypoint_tolerance = 0.15
+
+        self.safety_margin = 0.6
+        self.backup_distance = 1.2
+        self.lateral_escape_distance = 1.5
+        self.max_backup_attempts = 2
+        self.evasion_retry_limit = 3
+        self.turn_around_attempts_limit = 2
+        self.turn_around_trigger_limit = 5
+        self.obstacle_cycles = 0
+
+        self.vehicle_length = vehicle_length
+        self.current_pose = (0.0, 0.0, 0.0)
+        self.path = []
+        self.path_index = 0
+        self.goal_reached = False
+        self.obstacle_history = []
+        self.current_clearance = {'front': float('inf'), 'left': float('inf'), 'right': float('inf'), 'rear': float('inf')}
+        self.start = None
+        self.evasion_attempts = 0
+        self.turn_around_attempts = 0
+
+        self.normal_speed = 0.4
+        self.precision_speed = 0.15
+        self.rotation_gain = 0.8
+        self.backup_speed = -0.25
+
+        self.wheel_control_pub = self.create_publisher(Float64MultiArray, "simple_velocity_controller/commands", 10)
+        self.cmd_vel_pub = self.create_publisher(TwistStamped, "/bumperbot_controller/cmd_vel", 10)
+        self.create_subscription(LaserScan, '/scan', self.lidar_callback, 10)
+        self.create_subscription(Pose2D, "/robot_pose", self.pose_callback, 10)
+        self.timer = self.create_timer(0.1, self.navigation_cycle)
+
+        self.wheel_radius = 0.033
+        self.wheel_separation = 0.16
+        self.speed_matrix = np.array([
+            [self.wheel_radius/2, self.wheel_radius/2],
+            [self.wheel_radius/self.wheel_separation, -self.wheel_radius/self.wheel_separation]
+        ])
+
+    def pose_callback(self, msg):
+        self.current_pose = (msg.x, msg.y, msg.theta)
+        if self.start is None:
+            self.start = RRTNode(msg.x, msg.y)
+            self.get_logger().info("Initial position set. Starting path planning...")
+            self.plan_path()
+
+    def lidar_callback(self, msg):
+        self.environment_analysis(msg.ranges, msg.angle_min, msg.angle_increment, msg.range_max)
+
+    def environment_analysis(self, ranges, angle_min, angle_inc, max_range):
+        sectors = {'front': (-math.pi/6, math.pi/6), 'left': (math.pi/6, math.pi/2), 'right': (-math.pi/2, -math.pi/6), 'rear': (math.pi/2, 3*math.pi/4)}
+        clearance = {}
+        for sector, (start, end) in sectors.items():
+            sector_ranges = [r for i, r in enumerate(ranges) if start <= (angle_min + i*angle_inc) % (2*math.pi) <= end and not math.isinf(r)]
+            clearance[sector] = np.mean(sector_ranges) if sector_ranges else max_range
+        self.current_clearance = clearance
+        self.obstacle_history.append(clearance)
+
+    def navigation_cycle(self):
+        if self.goal_reached or self.start is None:
+            return
+        if self.near_goal():
+            self.precision_approach()
+            return
+        if self.obstacle_detected():
+            self.obstacle_cycles += 1
+            self.obstacle_response()
+        else:
+            self.reset_obstacle_state()
+            self.path_following()
+
+    def reset_obstacle_state(self):
+        self.evasion_attempts = 0
+        self.turn_around_attempts = 0
+        self.obstacle_cycles = 0
+        if hasattr(self, 'tried_quarter_turn'):
+            del self.tried_quarter_turn
+
+    def obstacle_response(self):
+        if len(self.obstacle_history) < 3:
+            self.backup_maneuver()
+        elif not hasattr(self, 'tried_quarter_turn'):
+            turn_dir = 'left' if self.current_clearance['left'] > self.current_clearance['right'] else 'right'
+            self.get_logger().info(f"Trying 90-degree {turn_dir} turn before considering full turn...")
+            angle_offset = math.pi / 2 if turn_dir == 'left' else -math.pi / 2
+            self.tried_quarter_turn = True
+            self.rotate_to_angle((self.current_pose[2] + angle_offset) % (2 * math.pi))
+            self.tried_quarter_turn = True
+            self.rotate_to_angle((self.current_pose[2] + math.pi / 2) % (2 * math.pi))
+        elif (self.turn_around_attempts < self.turn_around_attempts_limit and self.obstacle_cycles >= self.turn_around_trigger_limit):
+            self.get_logger().info("Obstacle persists. Trying 180-degree turn...")
+            self.rotate_to_angle((self.current_pose[2] + math.pi) % (2 * math.pi))
+            self.turn_around_attempts += 1
+            self.obstacle_cycles = 0
+            self.plan_path()
+        else:
+            if (self.turn_around_attempts < self.turn_around_attempts_limit and self.obstacle_cycles >= self.turn_around_trigger_limit):
+                self.get_logger().info("Obstacle persists. Trying 180-degree turn...")
+                self.rotate_to_angle((self.current_pose[2] + math.pi) % (2 * math.pi))
+                self.turn_around_attempts += 1
+                self.obstacle_cycles = 0
+                self.plan_path()
+            else:
+                self.lateral_evasion()
+
+    def near_goal(self):
+        return math.hypot(self.current_pose[0]-self.goal.x, self.current_pose[1]-self.goal.y) < 1.0
+
+    def precision_approach(self):
+        dx = self.goal.x - self.current_pose[0]
+        dy = self.goal.y - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.goal_region_radius:
+            self.goal_reached = True
+            self.stop_motion()
+            return
+        if abs(angle_error) > math.radians(5):
+            self.rotate_to_angle(target_angle)
+        else:
+            self.linear_move(min(self.precision_speed, 0.2 * distance))
+
+    def obstacle_detected(self):
+        return self.current_clearance['front'] < self.vehicle_length + self.safety_margin
+
+    def backup_maneuver(self):
+        backup_duration = self.backup_distance / abs(self.backup_speed)
+        if not hasattr(self, 'backup_start'):
+            self.backup_start = time.time()
+            self.get_logger().warn("Initiating backup maneuver...")
+        elapsed = time.time() - self.backup_start
+        if elapsed < backup_duration:
+            self.set_velocity(self.backup_speed, 0)
+        else:
+            del self.backup_start
+            self.plan_path()
+
+    def lateral_evasion(self):
+        if not hasattr(self, 'escape_direction'):
+            self.escape_direction = self.choose_evasion_direction()
+            self.escape_target = self.calculate_escape_vector()
+            self.get_logger().info(f"Executing lateral evasion to {self.escape_direction}")
+            self.evasion_attempts = 0
+        self.evasion_attempts += 1
+        if self.evasion_attempts > self.evasion_retry_limit:
+            self.get_logger().warn("Evasion attempts exceeded. Switching to backup maneuver.")
+            del self.escape_direction
+            self.backup_maneuver()
+            return
+        dx = self.escape_target[0] - self.current_pose[0]
+        dy = self.escape_target[1] - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        if distance < 0.3:
+            del self.escape_direction
+            self.plan_path()
+            return
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if abs(angle_error) > math.radians(15):
+            self.rotate_to_angle(target_angle)
+        else:
+            self.linear_move(self.normal_speed * 0.6)
+
+    def choose_evasion_direction(self):
+        left_clear = sum(c['left'] for c in self.obstacle_history[-3:])/3
+        right_clear = sum(c['right'] for c in self.obstacle_history[-3:])/3
+        return 'left' if left_clear >= right_clear else 'right'
+
+    def calculate_escape_vector(self):
+        angle = math.pi/3 if self.escape_direction == 'left' else -math.pi/3
+        return (
+            self.current_pose[0] + self.lateral_escape_distance * math.cos(angle),
+            self.current_pose[1] + self.lateral_escape_distance * math.sin(angle)
+        )
+
+    def path_following(self):
+        if not self.path or self.path_index >= len(self.path):
+            self.plan_path()
+            return
+        target = self.path[self.path_index]
+        dx = target[0] - self.current_pose[0]
+        dy = target[1] - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.waypoint_tolerance:
+            self.path_index += 1
+            return
+        if abs(angle_error) > math.radians(20):
+            self.rotate_to_angle(target_angle)
+        else:
+            speed = self.normal_speed * min(1.0, distance / 0.5)
+            self.set_velocity(speed, 0.5 * angle_error)
+
+    def plan_path(self):
+        if self.start is None:
+            self.get_logger().warn("Path planning called before initial position received!")
+            return
+        self.node_list = [self.start]
+        path_found = False
+        for _ in range(self.max_iter):
+            rand = self.sample_point()
+            nearest = self.find_nearest(rand)
+            new_node = self.extend_tree(nearest, rand)
+            if self.node_valid(new_node):
+                new_node.parent = nearest
+                self.node_list.append(new_node)
+                if self.reached_target(new_node):
+                    self.path = self.build_path(new_node)
+                    self.path_index = 0
+                    path_found = True
+                    break
+        if not path_found:
+            self.get_logger().warn("Path planning unsuccessful, retrying...")
+            time.sleep(0.5)
+            self.plan_path()
+
+    def find_nearest(self, target_node):
+        return min(self.node_list, key=lambda n: math.hypot(n.x - target_node.x, n.y - target_node.y))
+
+    def sample_point(self):
+        if random.random() < 0.4:
+            return self.goal
+        return RRTNode(random.uniform(0, self.map_size[0]), random.uniform(0, self.map_size[1]))
+
+    def extend_tree(self, from_node, to_node):
+        dx = to_node.x - from_node.x
+        dy = to_node.y - from_node.y
+        distance = math.hypot(dx, dy)
+        step = min(distance, self.step_size)
+        theta = math.atan2(dy, dx)
+        return RRTNode(from_node.x + step * math.cos(theta), from_node.y + step * math.sin(theta))
+
+    def node_valid(self, node):
+        if not node:
+            return False
+        front_clear = self.current_clearance.get('front', 0) > self.vehicle_length + 0.5
+        lateral_clear = True
+        if hasattr(self, 'escape_direction'):
+            lateral_clear = self.current_clearance.get(self.escape_direction, 0) > 0.7
+        return front_clear and lateral_clear
+
+    def reached_target(self, node):
+        return math.hypot(node.x - self.goal.x, node.y - self.goal.y) <= self.goal_region_radius
+
+    def build_path(self, node):
+        path = []
+        while node:
+            path.append([node.x, node.y])
+            node = node.parent
+        return path[::-1]
+
+    def angle_difference(self, target):
+        return (target - self.current_pose[2] + math.pi) % (2 * math.pi) - math.pi
+
+    def set_velocity(self, linear, angular):
+        cmd = TwistStamped()
+        cmd.header.stamp = self.get_clock().now().to_msg()
+        cmd.twist.linear.x = float(linear)
+        cmd.twist.angular.z = float(angular)
+        self.cmd_vel_pub.publish(cmd)
+        wheel_speed = np.linalg.inv(self.speed_matrix) @ np.array([[linear], [angular]])
+        msg = Float64MultiArray()
+        msg.data = [float(wheel_speed[1, 0]), float(wheel_speed[0, 0])]
+        self.wheel_control_pub.publish(msg)
+
+    def stop_motion(self):
+        self.set_velocity(0.0, 0.0)
+
+    def rotate_to_angle(self, target_angle):
+        angle_error = self.angle_difference(target_angle)
+        self.set_velocity(0.0, self.rotation_gain * angle_error)
+
+    def linear_move(self, speed):
+        self.set_velocity(speed, 0.0)
+
+def main():
+    rclpy.init()
+    navigator = EnhancedRRTNavigator(vehicle_length=0.235, goal=[1.0, 1.0], map_size=[100, 100])
+    rclpy.spin(navigator)
+    navigator.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+'''
+
+#Version4
+'''
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import TwistStamped, Pose2D
+from std_msgs.msg import Float64MultiArray
+import numpy as np
+import math
+import random
+import time
+
+class RRTNode:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.parent = None
+
+class EnhancedRRTNavigator(Node):
+    def __init__(self, vehicle_length, goal, map_size):
+        super().__init__('enhanced_rrt_navigator')
+
+        self.goal = RRTNode(goal[0], goal[1])
+        self.map_size = map_size
+        self.step_size = 0.4
+        self.max_iter = 2000
+        self.goal_region_radius = 0.15
+        self.waypoint_tolerance = 0.15
+
+        self.safety_margin = 0.6
+        self.vehicle_length = vehicle_length
+        self.current_pose = (0.0, 0.0, 0.0)
+        self.path = []
+        self.path_index = 0
+        self.goal_reached = False
+        self.current_clearance = {'front': float('inf'), 'left': float('inf'), 'right': float('inf'), 'rear': float('inf')}
+        self.start = None
+
+        self.normal_speed = 0.4
+        self.precision_speed = 0.15
+        self.rotation_gain = 0.8
+        self.backup_speed = -0.25
+
+        self.wheel_control_pub = self.create_publisher(Float64MultiArray, "simple_velocity_controller/commands", 10)
+        self.cmd_vel_pub = self.create_publisher(TwistStamped, "/bumperbot_controller/cmd_vel", 10)
+        self.create_subscription(LaserScan, '/scan', self.lidar_callback, 10)
+        self.create_subscription(Pose2D, "/robot_pose", self.pose_callback, 10)
+        self.timer = self.create_timer(0.1, self.navigation_cycle)
+
+        self.wheel_radius = 0.033
+        self.wheel_separation = 0.16
+        self.speed_matrix = np.array([
+            [self.wheel_radius/2, self.wheel_radius/2],
+            [self.wheel_radius/self.wheel_separation, -self.wheel_radius/self.wheel_separation]
+        ])
+
+        self.recovery_stage = None
+        self.recovery_timer = None
+        self.recovery_start_angle = None
+
+    def pose_callback(self, msg):
+        self.current_pose = (msg.x, msg.y, msg.theta)
+        if self.start is None:
+            self.start = RRTNode(msg.x, msg.y)
+            self.get_logger().info("Initial position set. Starting path planning...")
+            self.plan_path()
+
+    def lidar_callback(self, msg):
+        self.environment_analysis(msg.ranges, msg.angle_min, msg.angle_increment, msg.range_max)
+
+    def environment_analysis(self, ranges, angle_min, angle_inc, max_range):
+        sectors = {
+            'front': (-math.pi/6, math.pi/6),
+            'left': (math.pi/6, math.pi/2),
+            'right': (-math.pi/2, -math.pi/6),
+            'rear': (math.pi/2, 3*math.pi/4)
+        }
+        clearance = {}
+        for sector, (start, end) in sectors.items():
+            sector_ranges = [r for i, r in enumerate(ranges) if start <= (angle_min + i*angle_inc) % (2*math.pi) <= end and not math.isinf(r)]
+            clearance[sector] = np.mean(sector_ranges) if sector_ranges else max_range
+        self.current_clearance = clearance
+
+    def navigation_cycle(self):
+        if self.goal_reached or self.start is None:
+            return
+
+        if self.near_goal():
+            self.precision_approach()
+            return
+
+        if self.current_clearance['front'] < self.vehicle_length + 0.3:
+            self.smart_obstacle_recovery()
+        else:
+            self.recovery_stage = None
+            self.path_following()
+
+    def smart_obstacle_recovery(self):
+        threshold = self.vehicle_length + self.safety_margin
+
+        if self.recovery_stage is None:
+            self.recovery_stage = 'backup'
+            self.recovery_timer = time.time()
+            self.get_logger().warn("Obstacle very close! Backing up...")
+
+        elif self.recovery_stage == 'backup':
+            if time.time() - self.recovery_timer < 1.0:
+                self.set_velocity(self.backup_speed, 0.0)
+            else:
+                self.recovery_stage = 'try_left'
+                self.recovery_timer = time.time()
+                self.recovery_start_angle = self.current_pose[2]
+                self.get_logger().info("Trying small left turn...")
+
+        elif self.recovery_stage == 'try_left':
+            self.rotate_to_angle((self.recovery_start_angle + math.radians(30)) % (2 * math.pi))
+            if self.current_clearance['front'] > threshold and abs(self.angle_difference(self.recovery_start_angle + math.radians(30))) < math.radians(3):
+                self.get_logger().info("Left is clear. Proceeding forward.")
+                self.recovery_stage = None
+            elif time.time() - self.recovery_timer > 1.5:
+                self.recovery_stage = 'try_right'
+                self.recovery_timer = time.time()
+                self.recovery_start_angle = self.current_pose[2]
+                self.get_logger().info("Trying small right turn...")
+
+        elif self.recovery_stage == 'try_right':
+            self.rotate_to_angle((self.recovery_start_angle - math.radians(60)) % (2 * math.pi))
+            if self.current_clearance['front'] > threshold and abs(self.angle_difference(self.recovery_start_angle - math.radians(60))) < math.radians(3):
+                self.get_logger().info("Right is clear. Proceeding forward.")
+                self.recovery_stage = None
+            elif time.time() - self.recovery_timer > 1.5:
+                turn_dir = 'left' if self.current_clearance['left'] > self.current_clearance['right'] else 'right'
+                angle_offset = math.pi / 2 if turn_dir == 'left' else -math.pi / 2
+                self.rotate_to_angle((self.current_pose[2] + angle_offset) % (2 * math.pi))
+                self.set_velocity(self.normal_speed * 0.5, 0.0)
+                self.get_logger().info("Skimming along obstacle to find opening...")
+                if self.current_clearance['front'] > threshold:
+                    goal_angle = math.atan2(self.goal.y - self.current_pose[1], self.goal.x - self.current_pose[0])
+                    self.rotate_to_angle(goal_angle)
+                    if abs(self.angle_difference(goal_angle)) < math.radians(3):
+                        self.recovery_stage = None
+
+    def near_goal(self):
+        return math.hypot(self.current_pose[0]-self.goal.x, self.current_pose[1]-self.goal.y) < 1.0
+
+    def precision_approach(self):
+        dx = self.goal.x - self.current_pose[0]
+        dy = self.goal.y - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.goal_region_radius:
+            self.goal_reached = True
+            self.stop_motion()
+            return
+        if abs(angle_error) > math.radians(5):
+            self.rotate_to_angle(target_angle)
+        else:
+            self.linear_move(min(self.precision_speed, 0.2 * distance))
+
+    def path_following(self):
+        if not self.path or self.path_index >= len(self.path):
+            self.plan_path()
+            return
+        target = self.path[self.path_index]
+        dx = target[0] - self.current_pose[0]
+        dy = target[1] - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+        if distance < self.waypoint_tolerance:
+            self.path_index += 1
+            return
+        if abs(angle_error) > math.radians(20):
+            self.rotate_to_angle(target_angle)
+        else:
+            speed = self.normal_speed * min(1.0, distance / 0.5)
+            self.set_velocity(speed, 0.5 * angle_error)
+
+    def plan_path(self):
+        if self.start is None:
+            self.get_logger().warn("Path planning called before initial position received!")
+            return
+        self.node_list = [self.start]
+        path_found = False
+        for _ in range(self.max_iter):
+            rand = self.sample_point()
+            nearest = self.find_nearest(rand)
+            new_node = self.extend_tree(nearest, rand)
+            if self.node_valid(new_node):
+                new_node.parent = nearest
+                self.node_list.append(new_node)
+                if self.reached_target(new_node):
+                    self.path = self.build_path(new_node)
+                    self.path_index = 0
+                    path_found = True
+                    break
+        if not path_found:
+            self.get_logger().warn("Path planning unsuccessful, retrying...")
+            time.sleep(0.5)
+            self.plan_path()
+
+    def find_nearest(self, target_node):
+        return min(self.node_list, key=lambda n: math.hypot(n.x - target_node.x, n.y - target_node.y))
+
+    def sample_point(self):
+        if random.random() < 0.4:
+            return self.goal
+        elif random.random() < 0.2:
+            angle = random.uniform(-math.pi/3, math.pi/3)
+            distance = random.uniform(0.5, 1.2)
+            x = self.current_pose[0] + distance * math.cos(angle)
+            y = self.current_pose[1] + distance * math.sin(angle)
+            return RRTNode(x, y)
+        else:
+            return RRTNode(random.uniform(0, self.map_size[0]), random.uniform(0, self.map_size[1]))
+
+    def extend_tree(self, from_node, to_node):
+        dx = to_node.x - from_node.x
+        dy = to_node.y - from_node.y
+        distance = math.hypot(dx, dy)
+        step = min(distance, self.step_size)
+        theta = math.atan2(dy, dx)
+        return RRTNode(from_node.x + step * math.cos(theta), from_node.y + step * math.sin(theta))
+
+    def node_valid(self, node):
+        if not node:
+            return False
+        if node.x < 0 or node.x > self.map_size[0] or node.y < 0 or node.y > self.map_size[1]:
+            return False
+        dx = node.x - self.current_pose[0]
+        dy = node.y - self.current_pose[1]
+        angle_to_node = math.atan2(dy, dx)
+        angle_diff = self.angle_difference(angle_to_node)
+        if abs(angle_diff) > math.pi / 2:
+            return False
+        required_clearance = self.vehicle_length + self.safety_margin
+        return self.current_clearance['front'] > required_clearance * 0.7
+
+    def reached_target(self, node):
+        return math.hypot(node.x - self.goal.x, node.y - self.goal.y) <= self.goal_region_radius
+
+    def build_path(self, node):
+        path = []
+        while node:
+            path.append([node.x, node.y])
+            node = node.parent
+        return path[::-1]
+
+    def angle_difference(self, target):
+        return (target - self.current_pose[2] + math.pi) % (2 * math.pi) - math.pi
+
+    def set_velocity(self, linear, angular):
+        cmd = TwistStamped()
+        cmd.header.stamp = self.get_clock().now().to_msg()
+        cmd.twist.linear.x = float(linear)
+        cmd.twist.angular.z = float(angular)
+        self.cmd_vel_pub.publish(cmd)
+        wheel_speed = np.linalg.inv(self.speed_matrix) @ np.array([[linear], [angular]])
+        msg = Float64MultiArray()
+        msg.data = [float(wheel_speed[1, 0]), float(wheel_speed[0, 0])]
+        self.wheel_control_pub.publish(msg)
+
+    def stop_motion(self):
+        self.set_velocity(0.0, 0.0)
+
+    def rotate_to_angle(self, target_angle):
+        angle_error = self.angle_difference(target_angle)
+        if abs(angle_error) > math.radians(3):
+            angular_vel = self.rotation_gain * angle_error
+            angular_vel = max(min(angular_vel, 1.0), -1.0)
+            self.set_velocity(0.0, angular_vel)
+        else:
+            self.set_velocity(0.0, 0.0)
+
+    def linear_move(self, speed):
+        self.set_velocity(speed, 0.0)
+
+def main():
+    rclpy.init()
+    navigator = EnhancedRRTNavigator(vehicle_length=0.235, goal=[0.0, 0.0], map_size=[100, 100])
+    rclpy.spin(navigator)
+    navigator.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+'''
+
+#Version5
+'''
+import rclpy
+from rclpy.node import Node
+from sensor_msgs.msg import LaserScan
+from geometry_msgs.msg import TwistStamped, Pose2D
+from std_msgs.msg import Float64MultiArray
+import numpy as np
+import math
+import random
+import time
+
+class RRTNode:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.parent = None
+
+class EnhancedRRTNavigator(Node):
+    def __init__(self, vehicle_length, goal, map_size):
+        super().__init__('enhanced_rrt_navigator')
+        
+        # Configuration Parameters
+        self.goal = RRTNode(goal[0], goal[1])
+        self.map_size = map_size
+        self.vehicle_length = vehicle_length
+        self.vehicle_width = 0.3
+        self.step_size = 0.3
+        self.max_iter = 2000
+        self.goal_region_radius = 0.15
+        self.waypoint_tolerance = 0.2
+        self.safety_margin = 0.6
+        self.lookahead_distance = 0.8
+        
+        # Motion Control Parameters
+        self.max_linear_speed = 0.4
+        self.min_linear_speed = 0.1
+        self.max_angular_speed = 1.0
+        self.acceleration = 0.1
+        self.deceleration = 0.2
+        self.rotation_kp = 0.8
+        self.rotation_ki = 0.01
+        self.rotation_kd = 0.1
+        
+        # State Variables
+        self.current_pose = (0.0, 0.0, 0.0)
+        self.current_speed = 0.0
+        self.path = []
+        self.path_index = 0
+        self.goal_reached = False
+        self.current_clearance = {'front': float('inf'), 'left': float('inf'), 
+                                'right': float('inf'), 'rear': float('inf')}
+        self.start = None
+        self.last_plan_time = 0
+        self.recovery_stage = None
+        self.recovery_timer = 0
+        self.recovery_start_angle = 0
+        self.rotation_integral = 0.0
+        self.last_rotation_error = 0.0
+
+        # ROS Infrastructure
+        self.wheel_control_pub = self.create_publisher(Float64MultiArray, 
+                                                     "simple_velocity_controller/commands", 10)
+        self.cmd_vel_pub = self.create_publisher(TwistStamped, "/bumperbot_controller/cmd_vel", 10)
+        self.create_subscription(LaserScan, '/scan', self.lidar_callback, 10)
+        self.create_subscription(Pose2D, "/robot_pose", self.pose_callback, 10)
+        self.timer = self.create_timer(0.1, self.navigation_cycle)
+
+        # Kinematic Matrix
+        self.wheel_radius = 0.033
+        self.wheel_separation = 0.16
+        self.speed_matrix = np.array([
+            [self.wheel_radius/2, self.wheel_radius/2],
+            [self.wheel_radius/self.wheel_separation, -self.wheel_radius/self.wheel_separation]
+        ])
+
+    def pose_callback(self, msg):
+        self.current_pose = (msg.x, msg.y, msg.theta)
+        if self.start is None:
+            self.start = RRTNode(msg.x, msg.y)
+            self.plan_path()
+
+    def lidar_callback(self, msg):
+        self.environment_analysis(msg.ranges, msg.angle_min, 
+                                msg.angle_increment, msg.range_max)
+
+    def environment_analysis(self, ranges, angle_min, angle_inc, max_range):
+        sectors = {
+            'front': (-math.pi/4, math.pi/4),
+            'left_front': (math.pi/4, math.pi/3),
+            'right_front': (-math.pi/3, -math.pi/4),
+            'left': (math.pi/3, math.pi/2),
+            'right': (-math.pi/2, -math.pi/3),
+            'rear': (math.pi/2, 3*math.pi/4)
+        }
+        clearance = {}
+        for sector, (start, end) in sectors.items():
+            sector_ranges = [r for i, r in enumerate(ranges) 
+                           if start <= (angle_min + i*angle_inc) % (2*math.pi) <= end 
+                           and not math.isinf(r)]
+            clearance[sector] = min(sector_ranges) if sector_ranges else max_range
+        self.current_clearance = clearance
+
+    def navigation_cycle(self):
+        if self.goal_reached:
+            return
+
+        goal_distance = math.hypot(self.current_pose[0]-self.goal.x, 
+                                 self.current_pose[1]-self.goal.y)
+                                 
+        if goal_distance < self.goal_region_radius:
+            self.stop_motion()
+            self.goal_reached = True
+            self.get_logger().info("Final goal reached!")
+            return
+
+        if self.emergency_stop_condition():
+            self.emergency_stop()
+            return
+
+        if goal_distance < self.goal_region_radius * 4:
+            self.precision_approach()
+        elif self.obstacle_detected():
+            self.smart_obstacle_recovery()
+        else:
+            self.path_following()
+
+        if time.time() - self.last_plan_time > 1.0:
+            self.plan_path()
+
+    def emergency_stop_condition(self):
+        return self.current_clearance['front'] < self.vehicle_length + 0.3
+
+    def emergency_stop(self):
+        self.current_speed *= 0.8
+        if self.current_speed < 0.05:
+            self.current_speed = 0.0
+        self.set_velocity(self.current_speed, 0.0)
+        self.plan_path()
+
+    def obstacle_detected(self):
+        front_clearance = self.current_clearance['front']
+        required_space = self.vehicle_length + self.safety_margin
+        return front_clearance < required_space * 1.2
+
+    def smart_obstacle_recovery(self):
+        current_time = time.time()
+        timeout = 5.0
+
+        if current_time - self.recovery_timer > timeout:
+            self.get_logger().warn("Recovery timeout! Replanning...")
+            self.recovery_stage = None
+            self.plan_path()
+            return
+
+        if self.recovery_stage is None:
+            self.recovery_stage = 'rotate'
+            self.recovery_timer = current_time
+            self.recovery_start_angle = self.current_pose[2]
+            self.choose_rotation_direction()
+
+        elif self.recovery_stage == 'rotate':
+            target_angle = (self.recovery_start_angle + self.rotation_direction * math.pi/2) % (2*math.pi)
+            if self.rotate_to_angle(target_angle):
+                self.recovery_stage = 'move'
+                self.recovery_timer = current_time
+
+        elif self.recovery_stage == 'move':
+            if current_time - self.recovery_timer < 1.0:
+                self.set_velocity(0.2, 0.0)
+            else:
+                self.recovery_stage = None
+                self.plan_path()
+
+    def choose_rotation_direction(self):
+        if self.current_clearance['left'] > self.current_clearance['right']:
+            self.rotation_direction = 1
+        else:
+            self.rotation_direction = -1
+
+    def path_following(self):
+        if not self.path or self.path_index >= len(self.path):
+            return
+
+        lookahead_index = self.path_index
+        total_distance = 0.0
+        for i in range(self.path_index, len(self.path)-1):
+            segment_length = math.hypot(self.path[i+1][0]-self.path[i][0],
+                                      self.path[i+1][1]-self.path[i][1])
+            if total_distance + segment_length > self.lookahead_distance:
+                break
+            total_distance += segment_length
+            lookahead_index = i+1
+
+        target = self.path[lookahead_index]
+        dx = target[0] - self.current_pose[0]
+        dy = target[1] - self.current_pose[1]
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+
+        speed_factor = min(1.0, self.current_clearance['front'] / 2.0)
+        target_speed = self.max_linear_speed * speed_factor
+
+        if target_speed > self.current_speed:
+            self.current_speed = min(target_speed, self.current_speed + self.acceleration * 0.1)
+        else:
+            self.current_speed = max(target_speed, self.current_speed - self.deceleration * 0.1)
+
+        angular_vel = self.rotation_pid_control(angle_error)
+        self.set_velocity(self.current_speed, angular_vel)
+
+        if math.hypot(dx, dy) < self.waypoint_tolerance:
+            self.path_index = lookahead_index + 1
+
+    def rotation_pid_control(self, error):
+        self.rotation_integral += error * 0.1
+        derivative = (error - self.last_rotation_error) / 0.1
+        output = (self.rotation_kp * error + 
+                self.rotation_ki * self.rotation_integral +
+                self.rotation_kd * derivative)
+        self.last_rotation_error = error
+        return np.clip(output, -self.max_angular_speed, self.max_angular_speed)
+
+    def plan_path(self):
+        self.start = RRTNode(self.current_pose[0], self.current_pose[1])
+        self.node_list = [self.start]
+        path_found = False
+        
+        for _ in range(self.max_iter):
+            rand = self.sample_point()
+            nearest = self.find_nearest(rand)
+            new_node = self.extend_tree(nearest, rand)
+            
+            if self.node_valid(new_node):
+                new_node.parent = nearest
+                self.node_list.append(new_node)
+                
+                if self.reached_target(new_node):
+                    self.path = self.build_path(new_node)
+                    self.path_index = 0
+                    path_found = True
+                    break
+        
+        self.last_plan_time = time.time()
+        if not path_found:
+            self.get_logger().warn("Path planning failed. Retrying...")
+
+    def node_valid(self, node):
+        if node.x < 0 or node.x > self.map_size[0] or node.y < 0 or node.y > self.map_size[1]:
+            return False
+            
+        required_clearance = (self.vehicle_length + self.safety_margin) * \
+                           (1.0 + self.current_speed / self.max_linear_speed)
+        
+        return (self.current_clearance['front'] > required_clearance and
+                self.current_clearance['left'] > required_clearance * 0.6 and
+                self.current_clearance['right'] > required_clearance * 0.6)
+
+    def sample_point(self):
+        if random.random() < 0.6:
+            return self.goal
+        elif random.random() < 0.3:
+            current_angle = self.current_pose[2]
+            max_reach = min(2.0, self.step_size * 5)
+            x = self.current_pose[0] + max_reach * math.cos(current_angle)
+            y = self.current_pose[1] + max_reach * math.sin(current_angle)
+            return RRTNode(x, y)
+        else:
+            return RRTNode(
+                random.uniform(0, self.map_size[0]),
+                random.uniform(0, self.map_size[1])
+            )
+
+    def extend_tree(self, from_node, to_node):
+        dx = to_node.x - from_node.x
+        dy = to_node.y - from_node.y
+        distance = math.hypot(dx, dy)
+        step = min(distance, self.step_size * (1 + self.current_speed/self.max_linear_speed))
+        theta = math.atan2(dy, dx)
+        return RRTNode(
+            from_node.x + step * math.cos(theta),
+            from_node.y + step * math.sin(theta)
+        )
+
+    def find_nearest(self, target_node):
+        return min(self.node_list, 
+                 key=lambda n: math.hypot(n.x - target_node.x, n.y - target_node.y))
+
+    def reached_target(self, node):
+        radius = self.goal_region_radius * (1 + self.current_speed/self.max_linear_speed)
+        return math.hypot(node.x - self.goal.x, node.y - self.goal.y) <= radius
+
+    def build_path(self, node):
+        path = []
+        while node:
+            path.append([node.x, node.y])
+            node = node.parent
+        if len(path) > 2:
+            smoothed_path = [path[0]]
+            for p in path[1:-1]:
+                if math.hypot(p[0]-smoothed_path[-1][0], p[1]-smoothed_path[-1][1]) > self.step_size:
+                    smoothed_path.append(p)
+            smoothed_path.append(path[-1])
+            return smoothed_path[::-1]
+        return path[::-1]
+
+    def angle_difference(self, target):
+        return (target - self.current_pose[2] + math.pi) % (2 * math.pi) - math.pi
+
+    def set_velocity(self, linear, angular):
+        self.current_speed = np.clip(
+            linear,
+            self.current_speed - self.deceleration * 0.1,
+            self.current_speed + self.acceleration * 0.1
+        )
+        
+        cmd = TwistStamped()
+        cmd.header.stamp = self.get_clock().now().to_msg()
+        cmd.twist.linear.x = float(self.current_speed)
+        cmd.twist.angular.z = float(angular)
+        self.cmd_vel_pub.publish(cmd)
+        
+        wheel_speed = np.linalg.inv(self.speed_matrix) @ np.array([[self.current_speed], [angular]])
+        msg = Float64MultiArray()
+        msg.data = [float(wheel_speed[1, 0]), float(wheel_speed[0, 0])]
+        self.wheel_control_pub.publish(msg)
+
+    def stop_motion(self):
+        while self.current_speed > 0.05:
+            self.current_speed = max(0, self.current_speed - self.deceleration * 0.2)
+            self.set_velocity(self.current_speed, 0.0)
+            time.sleep(0.05)
+        self.current_speed = 0.0
+        self.set_velocity(0.0, 0.0)
+        self.goal_reached = True
+
+    def precision_approach(self):
+        dx = self.goal.x - self.current_pose[0]
+        dy = self.goal.y - self.current_pose[1]
+        distance = math.hypot(dx, dy)
+        target_angle = math.atan2(dy, dx)
+        angle_error = self.angle_difference(target_angle)
+
+        slow_zone = self.goal_region_radius * 3
+        stop_threshold = self.goal_region_radius
+        
+        if distance < slow_zone:
+            speed_factor = min(1.0, distance / slow_zone)
+            target_speed = self.max_linear_speed * speed_factor
+            angular_vel = self.rotation_pid_control(angle_error) * speed_factor
+            
+            target_speed = max(target_speed, self.min_linear_speed)
+            self.current_speed = np.clip(target_speed, 
+                                      self.current_speed - self.deceleration * 0.2,
+                                      self.current_speed + self.acceleration * 0.1)
+            
+            self.set_velocity(self.current_speed, angular_vel)
+            
+            if distance < stop_threshold:
+                self.stop_motion()
+                self.get_logger().info("Goal reached successfully!")
+                return
+        else:
+            self.path_following()
+
+    def rotate_to_angle(self, target_angle):
+        angle_error = self.angle_difference(target_angle)
+        if abs(angle_error) > math.radians(2):
+            angular_vel = self.rotation_pid_control(angle_error)
+            self.set_velocity(0.0, angular_vel)
+            return False
+        self.set_velocity(0.0, 0.0)
+        return True
+
+def main():
+    rclpy.init()
+    navigator = EnhancedRRTNavigator(
+        vehicle_length=0.235,
+        goal=[5.0, 5.0],  # Set your goal coordinates here
+        map_size=[100, 100]
+    )
+    
+    try:
+        rclpy.spin(navigator)
+    finally:
+        navigator.destroy_node()
+        rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+'''
+
+

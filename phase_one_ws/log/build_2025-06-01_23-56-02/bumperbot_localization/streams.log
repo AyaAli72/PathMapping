@@ -1,0 +1,9 @@
+[0.030s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_localization': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_localization -- -j16 -l16
+[0.128s] Built target ament_cmake_python_copy_bumperbot_localization
+[0.514s] running egg_info
+[0.516s] writing bumperbot_localization.egg-info/PKG-INFO
+[0.517s] writing dependency_links to bumperbot_localization.egg-info/dependency_links.txt
+[0.517s] writing top-level names to bumperbot_localization.egg-info/top_level.txt
+[0.530s] reading manifest file 'bumperbot_localization.egg-info/SOURCES.txt'
+[0.531s] writing manifest file 'bumperbot_localization.egg-info/SOURCES.txt'
+[0.605s] Built target ament_cmake_python_build_bumperbot_localization_egg

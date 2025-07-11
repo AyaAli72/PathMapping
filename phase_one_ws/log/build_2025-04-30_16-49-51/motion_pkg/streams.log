@@ -1,0 +1,35 @@
+[0.562s] Invoking command in '/home/mido/Music/phase_one_ws/src/motion_pkg': CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:/home/mido/Music/phase_one_ws/install/bumperbot_description PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data
+[0.773s] running egg_info
+[0.773s] writing ../../build/motion_pkg/motion_pkg.egg-info/PKG-INFO
+[0.773s] writing dependency_links to ../../build/motion_pkg/motion_pkg.egg-info/dependency_links.txt
+[0.773s] writing entry points to ../../build/motion_pkg/motion_pkg.egg-info/entry_points.txt
+[0.774s] writing requirements to ../../build/motion_pkg/motion_pkg.egg-info/requires.txt
+[0.774s] writing top-level names to ../../build/motion_pkg/motion_pkg.egg-info/top_level.txt
+[0.776s] reading manifest file '../../build/motion_pkg/motion_pkg.egg-info/SOURCES.txt'
+[0.785s] writing manifest file '../../build/motion_pkg/motion_pkg.egg-info/SOURCES.txt'
+[0.785s] running build
+[0.785s] running build_py
+[0.785s] copying motion_pkg/AI_path_planning_test.py -> /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg
+[0.785s] copying motion_pkg/lidar_sensor.py -> /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg
+[0.786s] copying motion_pkg/test.py -> /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg
+[0.786s] running install
+[0.786s] running install_lib
+[0.787s] copying /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg/AI_path_planning_test.py -> /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg
+[0.787s] copying /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg/lidar_sensor.py -> /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg
+[0.787s] copying /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg/test.py -> /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg
+[0.788s] byte-compiling /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg/AI_path_planning_test.py to AI_path_planning_test.cpython-310.pyc
+[0.789s] byte-compiling /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg/lidar_sensor.py to lidar_sensor.cpython-310.pyc
+[0.790s] byte-compiling /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg/test.py to test.cpython-310.pyc
+[0.791s] running install_data
+[0.792s] running install_egg_info
+[0.793s] removing '/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[0.793s] Copying ../../build/motion_pkg/motion_pkg.egg-info to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg-0.0.0-py3.10.egg-info
+[0.794s] running install_scripts
+[0.809s] Installing AI_path_planning_test script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.809s] Installing current_position script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.809s] Installing mark_target script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.809s] Installing points_sender script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.809s] Installing random_points_generator script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.810s] Installing speed_control script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.810s] writing list of installed files to '/home/mido/Music/phase_one_ws/build/motion_pkg/install.log'
+[0.833s] Invoked command in '/home/mido/Music/phase_one_ws/src/motion_pkg' returned '0': CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:/home/mido/Music/phase_one_ws/install/bumperbot_description PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data

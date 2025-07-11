@@ -1,0 +1,63 @@
+[0.021s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_controller -- -j16 -l16
+[0.129s] [  0%] Built target ament_cmake_python_copy_bumperbot_controller
+[0.160s] [ 25%] [32mBuilding CXX object CMakeFiles/noisy_controller.dir/src/noisy_controller.cpp.o[0m
+[0.169s] [ 50%] [32mBuilding CXX object CMakeFiles/simple_controller.dir/src/simple_controller.cpp.o[0m
+[0.570s] running egg_info
+[0.572s] writing bumperbot_controller.egg-info/PKG-INFO
+[0.572s] writing dependency_links to bumperbot_controller.egg-info/dependency_links.txt
+[0.573s] writing top-level names to bumperbot_controller.egg-info/top_level.txt
+[0.579s] reading manifest file 'bumperbot_controller.egg-info/SOURCES.txt'
+[0.580s] writing manifest file 'bumperbot_controller.egg-info/SOURCES.txt'
+[0.685s] [ 50%] Built target ament_cmake_python_build_bumperbot_controller_egg
+[10.480s] [ 75%] [32m[1mLinking CXX executable noisy_controller[0m
+[11.137s] [ 75%] Built target noisy_controller
+[14.791s] [100%] [32m[1mLinking CXX executable simple_controller[0m
+[15.555s] [100%] Built target simple_controller
+[15.574s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --build /home/mido/Music/phase_one_ws/build/bumperbot_controller -- -j16 -l16
+[15.576s] Invoking command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_controller
+[15.586s] -- Install configuration: ""
+[15.586s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/environment/pythonpath.sh
+[15.586s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/environment/pythonpath.dsv
+[15.586s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller-0.0.0-py3.10.egg-info
+[15.586s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller-0.0.0-py3.10.egg-info/PKG-INFO
+[15.586s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller-0.0.0-py3.10.egg-info/top_level.txt
+[15.586s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller-0.0.0-py3.10.egg-info/dependency_links.txt
+[15.587s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller-0.0.0-py3.10.egg-info/SOURCES.txt
+[15.587s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller
+[15.587s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller/noisy_controller.py
+[15.587s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller/simple_controller.py
+[15.587s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller/__init__.py
+[15.621s] Listing '/home/mido/Music/phase_one_ws/install/bumperbot_controller/local/lib/python3.10/dist-packages/bumperbot_controller'...
+[15.629s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/include/include
+[15.629s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/include/include/bumperbot_controller
+[15.629s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/include/include/bumperbot_controller/noisy_controller.hpp
+[15.629s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/include/include/bumperbot_controller/simple_controller.hpp
+[15.629s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller/simple_controller
+[15.637s] -- Set runtime path of "/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller/simple_controller" to ""
+[15.638s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller/noisy_controller
+[15.643s] -- Set runtime path of "/home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller/noisy_controller" to ""
+[15.643s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/launch
+[15.643s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/launch/controller.launch.py
+[15.643s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/launch/joystick_teleop.launch.py
+[15.643s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/config
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/config/bumperbot_controllers.yaml
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/config/joy_config.yaml
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/config/joy_teleop.yaml
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller/simple_controller.py
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/lib/bumperbot_controller/noisy_controller.py
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/ament_index/resource_index/package_run_dependencies/bumperbot_controller
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/ament_index/resource_index/parent_prefix_path/bumperbot_controller
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/environment/ament_prefix_path.sh
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/environment/ament_prefix_path.dsv
+[15.644s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/environment/path.sh
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/environment/path.dsv
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/local_setup.bash
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/local_setup.sh
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/local_setup.zsh
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/local_setup.dsv
+[15.645s] -- Installing: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.dsv
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/ament_index/resource_index/packages/bumperbot_controller
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/cmake/bumperbot_controllerConfig.cmake
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/cmake/bumperbot_controllerConfig-version.cmake
+[15.645s] -- Up-to-date: /home/mido/Music/phase_one_ws/install/bumperbot_controller/share/bumperbot_controller/package.xml
+[15.650s] Invoked command in '/home/mido/Music/phase_one_ws/build/bumperbot_controller' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mido/Music/phase_one_ws/install/motion_pkg:/opt/ros/humble /usr/bin/cmake --install /home/mido/Music/phase_one_ws/build/bumperbot_controller

@@ -1,0 +1,233 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-18c27ecd5a28ae913541.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				},
+				{
+					"build" : "action_file__py",
+					"jsonFile" : "directory-action_file__py-f8c570c555bda65eb8d6.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/mido/Music/phase_one_ws/build/action_file/action_file__py",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "action_file",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file-76055f46f474435c8cf9.json",
+					"name" : "action_file",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__cpp-695bf07da8918bd6be9d.json",
+					"name" : "action_file__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "action_file__py::@f929f8b29909df7403f2",
+					"jsonFile" : "target-action_file__py-feca044a24b9a1b0474a.json",
+					"name" : "action_file__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_generator_c-9abfc840a8955a288c28.json",
+					"name" : "action_file__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_generator_py-215447ac7cd7c2400f8f.json",
+					"name" : "action_file__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_c-ae65a8806ba8254caf07.json",
+					"name" : "action_file__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_c__pyext-3f7e776661d09f67e9a3.json",
+					"name" : "action_file__rosidl_typesupport_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_cpp-4a4ce43a45893dbd6361.json",
+					"name" : "action_file__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_fastrtps_c-2c0a08dd814be7e81ecf.json",
+					"name" : "action_file__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_fastrtps_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_fastrtps_c__pyext-1df7466f7d9a213fd885.json",
+					"name" : "action_file__rosidl_typesupport_fastrtps_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_fastrtps_cpp-d975711378d62261e0c7.json",
+					"name" : "action_file__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_introspection_c-c6f06a33e7b0d2c88f7a.json",
+					"name" : "action_file__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_introspection_c__pyext::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_introspection_c__pyext-9b720c9da4656fba71f4.json",
+					"name" : "action_file__rosidl_typesupport_introspection_c__pyext",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file__rosidl_typesupport_introspection_cpp-638ea4e2c438894b3b34.json",
+					"name" : "action_file__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "action_file_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-action_file_uninstall-e79069697e5a59cae33d.json",
+					"name" : "action_file_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_action_file_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_action_file_egg-3a6205b2b98fea119f69.json",
+					"name" : "ament_cmake_python_build_action_file_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_action_file::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_action_file-f792554bf072f4a6a2c1.json",
+					"name" : "ament_cmake_python_copy_action_file",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-8b7f7eca7adc3bbe4b42.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/mido/Music/phase_one_ws/build/action_file",
+		"source" : "/home/mido/Music/phase_one_ws/src/action_file"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

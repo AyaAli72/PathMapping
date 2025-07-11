@@ -1,0 +1,29 @@
+[0.652s] Invoking command in '/home/mido/Music/phase_one_ws/src/motion_pkg': CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:/home/mido/Music/phase_one_ws/install/bumperbot_description PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data
+[0.901s] running egg_info
+[0.902s] writing ../../build/motion_pkg/motion_pkg.egg-info/PKG-INFO
+[0.902s] writing dependency_links to ../../build/motion_pkg/motion_pkg.egg-info/dependency_links.txt
+[0.902s] writing entry points to ../../build/motion_pkg/motion_pkg.egg-info/entry_points.txt
+[0.902s] writing requirements to ../../build/motion_pkg/motion_pkg.egg-info/requires.txt
+[0.903s] writing top-level names to ../../build/motion_pkg/motion_pkg.egg-info/top_level.txt
+[0.905s] reading manifest file '../../build/motion_pkg/motion_pkg.egg-info/SOURCES.txt'
+[0.913s] writing manifest file '../../build/motion_pkg/motion_pkg.egg-info/SOURCES.txt'
+[0.913s] running build
+[0.913s] running build_py
+[0.914s] copying motion_pkg/AI_path_planning_test.py -> /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg
+[0.914s] running install
+[0.915s] running install_lib
+[0.915s] copying /home/mido/Music/phase_one_ws/build/motion_pkg/build/lib/motion_pkg/AI_path_planning_test.py -> /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg
+[0.916s] byte-compiling /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg/AI_path_planning_test.py to AI_path_planning_test.cpython-310.pyc
+[0.918s] running install_data
+[0.918s] running install_egg_info
+[0.919s] removing '/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg-0.0.0-py3.10.egg-info' (and everything under it)
+[0.920s] Copying ../../build/motion_pkg/motion_pkg.egg-info to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg-0.0.0-py3.10.egg-info
+[0.921s] running install_scripts
+[0.938s] Installing AI_path_planning_test script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.938s] Installing current_position script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.938s] Installing mark_target script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.938s] Installing points_sender script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.939s] Installing random_points_generator script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.939s] Installing speed_control script to /home/mido/Music/phase_one_ws/install/motion_pkg/lib/motion_pkg
+[0.939s] writing list of installed files to '/home/mido/Music/phase_one_ws/build/motion_pkg/install.log'
+[0.963s] Invoked command in '/home/mido/Music/phase_one_ws/src/motion_pkg' returned '0': CMAKE_PREFIX_PATH=/home/mido/Music/phase_one_ws/install/action_file:/home/mido/Music/phase_one_ws/install/bumperbot_description PYTHONPATH=/home/mido/Music/phase_one_ws/build/motion_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/motion_pkg build --build-base /home/mido/Music/phase_one_ws/build/motion_pkg/build install --record /home/mido/Music/phase_one_ws/build/motion_pkg/install.log --single-version-externally-managed install_data

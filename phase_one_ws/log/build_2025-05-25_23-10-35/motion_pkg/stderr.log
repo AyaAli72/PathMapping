@@ -1,0 +1,5 @@
+  File "/home/mido/Music/phase_one_ws/install/motion_pkg/lib/python3.10/site-packages/motion_pkg/path_planning_1.py", line 282
+    if not all(isinstance(coord, (int, float)) for coord in self.escape_target)):
+                                                                               ^
+SyntaxError: unmatched ')'
+
