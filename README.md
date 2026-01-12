@@ -16,17 +16,7 @@ The project applies sampling-based path planning techniques to generate efficien
 ## Technologies Used
 
 - Python  
-- NumPy  
-- Matplotlib  
 - Motion Planning & Autonomous Navigation Concepts  
-
-## Project Structure
-
-PathMapping/
-- src/ → Path planning algorithms  
-- maps/ → Environment maps  
-- visualization/ → Path and environment visualization  
-- README.md  
 
 ## Learning Outcomes
 
